@@ -1,0 +1,164 @@
+no	project	title	color	hex	accent
+1	pencraft	Pencraft	violet	#7868e6	indigo-violet
+2	ballpointcraft	Ballpointcraft	violet	#7868e6	indigo-violet
+3	gelcraft	Gelcraft	violet	#7868e6	indigo-violet
+4	rollerballcraft	Rollerballcraft	violet	#7868e6	indigo-violet
+5	fountaincraft	Fountaincraft	violet	#7868e6	indigo-violet
+6	finelinercraft	Finelinercraft	violet	#7868e6	indigo-violet
+7	markercraft	Markercraft	violet	#7868e6	indigo-violet
+8	highlightercraft	Highlightercraft	violet	#7868e6	indigo-violet
+9	brushcraft	Brushcraft	violet	#7868e6	indigo-violet
+10	calligraphycraft	Calligraphycraft	violet	#7868e6	indigo-violet
+11	permanentmarkercraft	Permanentmarkercraft	violet	#7868e6	indigo-violet
+12	whiteboard-markers-craft	Whiteboard Markers	violet	#7868e6	indigo-violet
+13	mechanical-pencils-craft	Mechanical Pencils	violet	#7868e6	indigo-violet
+14	graphite-pencils-craft	Graphite Pencils	violet	#7868e6	indigo-violet
+15	colored-pencils-craft	Colored Pencils	violet	#7868e6	indigo-violet
+16	charcoal-pencils-craft	Charcoal Pencils	violet	#7868e6	indigo-violet
+17	carpenter-pencils-craft	Carpenter Pencils	violet	#7868e6	indigo-violet
+18	pencil-leads-craft	Pencil Leads	violet	#7868e6	indigo-violet
+19	pen-refills-craft	Pen Refills	violet	#7868e6	indigo-violet
+20	pencil-sharpeners-craft	Pencil Sharpeners	violet	#7868e6	indigo-violet
+21	erasers-craft	Erasers	coral	#f28f76	soft coral
+22	fountain-pen-ink-craft	Fountain Pen Ink	violet	#7868e6	indigo-violet
+23	drawing-ink-craft	Drawing Ink	violet	#7868e6	indigo-violet
+24	calligraphy-ink-craft	Calligraphy Ink	violet	#7868e6	indigo-violet
+25	stamp-ink-craft	Stamp Ink	violet	#7868e6	indigo-violet
+26	ink-cartridges-craft	Ink Cartridges	violet	#7868e6	indigo-violet
+27	correction-pens-craft	Correction Pens	violet	#7868e6	indigo-violet
+28	correction-tape-craft	Correction Tape	coral	#f28f76	soft coral
+29	correction-fluid-craft	Correction Fluid	sky	#8ecae6	pale sky
+30	ink-blotting-paper-craft	Ink Blotting Paper	violet	#7868e6	indigo-violet
+31	paper-products-craft	Paper Products	sky	#8ecae6	pale sky
+32	notebooks-craft	Notebooks	sky	#8ecae6	pale sky
+33	spiral-notebooks-craft	Spiral Notebooks	sky	#8ecae6	pale sky
+34	hardcover-notebooks-craft	Hardcover Notebooks	sky	#8ecae6	pale sky
+35	softcover-notebooks-craft	Softcover Notebooks	sky	#8ecae6	pale sky
+36	pocket-notebooks-craft	Pocket Notebooks	sky	#8ecae6	pale sky
+37	journals-craft	Journals	sky	#8ecae6	pale sky
+38	diaries-and-planners-craft	Diaries And Planners	sky	#8ecae6	pale sky
+39	sketchbooks-craft	Sketchbooks	sky	#8ecae6	pale sky
+40	drawing-pads-craft	Drawing Pads	sky	#8ecae6	pale sky
+41	watercolor-paper-craft	Watercolor Paper	sky	#8ecae6	pale sky
+42	graph-paper-craft	Graph Paper	sky	#8ecae6	pale sky
+43	lined-paper-craft	Lined Paper	sky	#8ecae6	pale sky
+44	blank-paper-craft	Blank Paper	sky	#8ecae6	pale sky
+45	legal-pads-craft	Legal Pads	sky	#8ecae6	pale sky
+46	memo-pads-craft	Memo Pads	sky	#8ecae6	pale sky
+47	sticky-notes-craft	Sticky Notes	sky	#8ecae6	pale sky
+48	index-cards-craft	Index Cards	sky	#8ecae6	pale sky
+49	flashcards-craft	Flashcards	sky	#8ecae6	pale sky
+50	printer-paper-craft	Printer Paper	sky	#8ecae6	pale sky
+51	copy-paper-craft	Copy Paper	sky	#8ecae6	pale sky
+52	colored-paper-craft	Colored Paper	sky	#8ecae6	pale sky
+53	tracing-paper-craft	Tracing Paper	sky	#8ecae6	pale sky
+54	carbon-paper-craft	Carbon Paper	sky	#8ecae6	pale sky
+55	envelopes-craft	Envelopes	sky	#8ecae6	pale sky
+56	letterheads-craft	Letterheads	sky	#8ecae6	pale sky
+57	rulers-craft	Rulers	mint	#66c7b5	fresh mint
+58	flexible-rulers-craft	Flexible Rulers	mint	#66c7b5	fresh mint
+59	steel-rulers-craft	Steel Rulers	mint	#66c7b5	fresh mint
+60	set-squares-craft	Set Squares	lilac	#c9b6e4	quiet lilac
+61	protractors-craft	Protractors	mint	#66c7b5	fresh mint
+62	compasses-craft	Compasses	mint	#66c7b5	fresh mint
+63	geometry-sets-craft	Geometry Sets	mint	#66c7b5	fresh mint
+64	measuring-tapes-craft	Measuring Tapes	mint	#66c7b5	fresh mint
+65	stencils-craft	Stencils	mint	#66c7b5	fresh mint
+66	templates-craft	Templates	mint	#66c7b5	fresh mint
+67	scissors-craft	Scissors	coral	#f28f76	soft coral
+68	craft-scissors-craft	Craft Scissors	coral	#f28f76	soft coral
+69	paper-cutters-craft	Paper Cutters	sky	#8ecae6	pale sky
+70	utility-knives-craft	Utility Knives	sun	#f4c95d	paper sun
+71	glue-sticks-craft	Glue Sticks	coral	#f28f76	soft coral
+72	liquid-glue-craft	Liquid Glue	coral	#f28f76	soft coral
+73	craft-glue-craft	Craft Glue	coral	#f28f76	soft coral
+74	double-sided-tape-craft	Double Sided Tape	coral	#f28f76	soft coral
+75	clear-tape-craft	Clear Tape	coral	#f28f76	soft coral
+76	masking-tape-craft	Masking Tape	coral	#f28f76	soft coral
+77	washi-tape-craft	Washi Tape	coral	#f28f76	soft coral
+78	packing-tape-craft	Packing Tape	coral	#f28f76	soft coral
+79	tape-dispensers-craft	Tape Dispensers	violet	#7868e6	indigo-violet
+80	files-craft	Files	mint	#66c7b5	fresh mint
+81	folders-craft	Folders	mint	#66c7b5	fresh mint
+82	document-folders-craft	Document Folders	mint	#66c7b5	fresh mint
+83	expanding-files-craft	Expanding Files	mint	#66c7b5	fresh mint
+84	ring-binders-craft	Ring Binders	mint	#66c7b5	fresh mint
+85	clipboards-craft	Clipboards	mint	#66c7b5	fresh mint
+86	lever-arch-files-craft	Lever Arch Files	mint	#66c7b5	fresh mint
+87	magazine-holders-craft	Magazine Holders	lilac	#c9b6e4	quiet lilac
+88	document-wallets-craft	Document Wallets	mint	#66c7b5	fresh mint
+89	file-labels-craft	File Labels	mint	#66c7b5	fresh mint
+90	index-dividers-craft	Index Dividers	mint	#66c7b5	fresh mint
+91	bookmarks-craft	Bookmarks	sky	#8ecae6	pale sky
+92	paper-clips-craft	Paper Clips	sky	#8ecae6	pale sky
+93	binder-clips-craft	Binder Clips	mint	#66c7b5	fresh mint
+94	bulldog-clips-craft	Bulldog Clips	coral	#f28f76	soft coral
+95	push-pins-craft	Push Pins	coral	#f28f76	soft coral
+96	rubber-bands-craft	Rubber Bands	coral	#f28f76	soft coral
+97	staplers-craft	Staplers	coral	#f28f76	soft coral
+98	staples-craft	Staples	coral	#f28f76	soft coral
+99	staple-removers-craft	Staple Removers	coral	#f28f76	soft coral
+100	hole-punches-craft	Hole Punches	coral	#f28f76	soft coral
+101	desk-accessories-craft	Desk Accessories	lilac	#c9b6e4	quiet lilac
+102	pencil-cases-craft	Pencil Cases	violet	#7868e6	indigo-violet
+103	pen-stands-craft	Pen Stands	violet	#7868e6	indigo-violet
+104	desk-organizers-craft	Desk Organizers	lilac	#c9b6e4	quiet lilac
+105	letter-trays-craft	Letter Trays	lilac	#c9b6e4	quiet lilac
+106	desk-pads-craft	Desk Pads	sky	#8ecae6	pale sky
+107	mouse-pads-craft	Mouse Pads	sky	#8ecae6	pale sky
+108	bookends-craft	Bookends	lilac	#c9b6e4	quiet lilac
+109	paperweights-craft	Paperweights	sky	#8ecae6	pale sky
+110	calendars-craft	Calendars	mint	#66c7b5	fresh mint
+111	desk-calendars-craft	Desk Calendars	mint	#66c7b5	fresh mint
+112	nameplates-craft	Nameplates	lilac	#c9b6e4	quiet lilac
+113	sticky-note-holders-craft	Sticky Note Holders	sky	#8ecae6	pale sky
+114	scissors-holders-craft	Scissors Holders	coral	#f28f76	soft coral
+115	cable-organizers-craft	Cable Organizers	lilac	#c9b6e4	quiet lilac
+116	crayons-craft	Crayons	sun	#f4c95d	paper sun
+117	oil-pastels-craft	Oil Pastels	violet	#7868e6	indigo-violet
+118	soft-pastels-craft	Soft Pastels	violet	#7868e6	indigo-violet
+119	oil-paints-craft	Oil Paints	sun	#f4c95d	paper sun
+120	watercolors-craft	Watercolors	sun	#f4c95d	paper sun
+121	acrylic-paints-craft	Acrylic Paints	sun	#f4c95d	paper sun
+122	paintbrushes-craft	Paintbrushes	violet	#7868e6	indigo-violet
+123	palettes-craft	Palettes	sun	#f4c95d	paper sun
+124	art-markers-craft	Art Markers	violet	#7868e6	indigo-violet
+125	drawing-charcoal-craft	Drawing Charcoal	violet	#7868e6	indigo-violet
+126	blending-stumps-craft	Blending Stumps	lilac	#c9b6e4	quiet lilac
+127	modeling-clay-craft	Modeling Clay	sun	#f4c95d	paper sun
+128	craft-paper-craft	Craft Paper	sky	#8ecae6	pale sky
+129	glitter-craft	Glitter	sun	#f4c95d	paper sun
+130	ribbons-craft	Ribbons	sun	#f4c95d	paper sun
+131	art-aprons-craft	Art Aprons	sun	#f4c95d	paper sun
+132	pencil-boxes-craft	Pencil Boxes	violet	#7868e6	indigo-violet
+133	school-bags-craft	School Bags	sun	#f4c95d	paper sun
+134	lunch-boxes-craft	Lunch Boxes	sun	#f4c95d	paper sun
+135	receipt-books-craft	Receipt Books	sky	#8ecae6	pale sky
+136	invoice-books-craft	Invoice Books	sky	#8ecae6	pale sky
+137	order-books-craft	Order Books	sky	#8ecae6	pale sky
+138	visitor-books-craft	Visitor Books	sky	#8ecae6	pale sky
+139	attendance-registers-craft	Attendance Registers	sky	#8ecae6	pale sky
+140	logbooks-craft	Logbooks	sky	#8ecae6	pale sky
+141	notepads-craft	Notepads	sky	#8ecae6	pale sky
+142	business-card-holders-craft	Business Card Holders	sky	#8ecae6	pale sky
+143	mailing-labels-craft	Mailing Labels	mint	#66c7b5	fresh mint
+144	address-labels-craft	Address Labels	mint	#66c7b5	fresh mint
+145	shipping-labels-craft	Shipping Labels	mint	#66c7b5	fresh mint
+146	packing-envelopes-craft	Packing Envelopes	sky	#8ecae6	pale sky
+147	document-bags-craft	Document Bags	mint	#66c7b5	fresh mint
+148	rubber-stamps-craft	Rubber Stamps	coral	#f28f76	soft coral
+149	stamp-pads-craft	Stamp Pads	sky	#8ecae6	pale sky
+150	gift-pens-craft	Gift Pens	violet	#7868e6	indigo-violet
+151	executive-notebooks-craft	Executive Notebooks	sky	#8ecae6	pale sky
+152	leather-journals-craft	Leather Journals	sky	#8ecae6	pale sky
+153	personalized-diaries-craft	Personalized Diaries	sky	#8ecae6	pale sky
+154	stationery-gift-sets-craft	Stationery Gift Sets	sun	#f4c95d	paper sun
+155	writing-sets-craft	Writing Sets	lilac	#c9b6e4	quiet lilac
+156	calligraphy-sets-craft	Calligraphy Sets	violet	#7868e6	indigo-violet
+157	desk-gift-sets-craft	Desk Gift Sets	sun	#f4c95d	paper sun
+158	letter-writing-sets-craft	Letter Writing Sets	lilac	#c9b6e4	quiet lilac
+159	wax-seals-craft	Wax Seals	lilac	#c9b6e4	quiet lilac
+160	greeting-cards-craft	Greeting Cards	sky	#8ecae6	pale sky
+161	thank-you-cards-craft	Thank You Cards	sky	#8ecae6	pale sky
+162	invitation-cards-craft	Invitation Cards	sky	#8ecae6	pale sky
+163	gift-tags-craft	Gift Tags	sun	#f4c95d	paper sun
