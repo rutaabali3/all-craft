@@ -1,0 +1,3 @@
+## 2026-03-14 - Pre-caching DOM dataset attributes for list filtering
+**Learning:** In client-side list search/filtering across 160+ cards, accessing DOM `dataset` properties and building string concatenations inside frequent `input` handlers creates redundant JavaScript engine lookups and heap allocations. Additionally, writing `card.hidden = !show` indiscriminately mutates DOM attributes on unchanged elements.
+**Action:** Pre-cache element dataset attributes into plain JavaScript objects on DOM initialization, and guard DOM mutations (`if (el.hidden !== !show) el.hidden = !show`) to skip redundant DOM writes.
