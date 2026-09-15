@@ -1,22 +1,44 @@
 document.addEventListener('DOMContentLoaded', () => {
-  const cards = [...document.querySelectorAll('.project-card')];
   const search = document.querySelector('#project-search');
   const empty = document.querySelector('#empty-state');
   const filters = [...document.querySelectorAll('.filter')];
   let activeFilter = 'all';
 
+  // Performance Optimization: Cache card metadata and visibility state upfront.
+  // This avoids dataset DOM attribute accesses, string interpolations, and redundant DOM mutations on every search keystroke/filter click.
+  const cardData = [...document.querySelectorAll('.project-card')].map((el) => {
+    const name = el.dataset.name || '';
+    const category = el.dataset.category || '';
+    return {
+      el,
+      name,
+      haystack: `${name} ${category}`,
+      isHidden: el.hidden || false
+    };
+  });
+
   const applyFilters = () => {
     const term = search.value.trim().toLowerCase();
     let visible = 0;
-    cards.forEach((card) => {
-      const matchesTerm = !term || card.dataset.name.includes(term);
-      const haystack = `${card.dataset.name} ${card.dataset.category}`;
-      const matchesFilter = activeFilter === 'all' || haystack.includes(activeFilter);
+    const isAllFilter = activeFilter === 'all';
+
+    cardData.forEach((item) => {
+      const matchesTerm = !term || item.name.includes(term);
+      const matchesFilter = isAllFilter || item.haystack.includes(activeFilter);
       const show = matchesTerm && matchesFilter;
-      card.hidden = !show;
+      const shouldHide = !show;
+
+      if (item.isHidden !== shouldHide) {
+        item.isHidden = shouldHide;
+        item.el.hidden = shouldHide;
+      }
       if (show) visible += 1;
     });
-    empty.hidden = visible !== 0;
+
+    const emptyStateHidden = visible !== 0;
+    if (empty.hidden !== emptyStateHidden) {
+      empty.hidden = emptyStateHidden;
+    }
   };
 
   search.addEventListener('input', applyFilters);
