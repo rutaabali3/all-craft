@@ -1,22 +1,44 @@
 document.addEventListener('DOMContentLoaded', () => {
-  const cards = [...document.querySelectorAll('.project-card')];
+  // Pre-cache DOM elements and pre-compute card metadata on initialization
+  // to avoid repeated DOM dataset reads and string allocations during search/filter operations.
   const search = document.querySelector('#project-search');
   const empty = document.querySelector('#empty-state');
   const filters = [...document.querySelectorAll('.filter')];
+  const cardData = [...document.querySelectorAll('.project-card')].map((el) => {
+    const name = (el.dataset.name || '').toLowerCase();
+    const category = (el.dataset.category || '').toLowerCase();
+    return {
+      el,
+      name,
+      haystack: `${name} ${category}`,
+      hidden: el.hidden
+    };
+  });
   let activeFilter = 'all';
 
   const applyFilters = () => {
     const term = search.value.trim().toLowerCase();
     let visible = 0;
-    cards.forEach((card) => {
-      const matchesTerm = !term || card.dataset.name.includes(term);
-      const haystack = `${card.dataset.name} ${card.dataset.category}`;
-      const matchesFilter = activeFilter === 'all' || haystack.includes(activeFilter);
+
+    for (let i = 0; i < cardData.length; i++) {
+      const card = cardData[i];
+      const matchesTerm = !term || card.name.includes(term);
+      const matchesFilter = activeFilter === 'all' || card.haystack.includes(activeFilter);
       const show = matchesTerm && matchesFilter;
-      card.hidden = !show;
-      if (show) visible += 1;
-    });
-    empty.hidden = visible !== 0;
+      const hide = !show;
+
+      // Only mutate DOM if hidden state changes to eliminate unnecessary reflows and paints
+      if (card.hidden !== hide) {
+        card.el.hidden = hide;
+        card.hidden = hide;
+      }
+      if (show) visible++;
+    }
+
+    const emptyHidden = visible !== 0;
+    if (empty.hidden !== emptyHidden) {
+      empty.hidden = emptyHidden;
+    }
   };
 
   search.addEventListener('input', applyFilters);
