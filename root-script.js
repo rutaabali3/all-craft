@@ -10,20 +10,23 @@ document.addEventListener('DOMContentLoaded', () => {
     return {
       el,
       name,
-      haystack: `${name} ${category}`,
+      category,
       hidden: el.hidden
     };
   });
   let activeFilter = 'all';
+  let filterRafId = null;
 
-  const applyFilters = () => {
+  const applyFiltersNow = () => {
+    filterRafId = null;
     const term = search.value.trim().toLowerCase();
+    const isAll = activeFilter === 'all';
     let visible = 0;
 
     for (let i = 0; i < cardData.length; i++) {
       const card = cardData[i];
       const matchesTerm = !term || card.name.includes(term);
-      const matchesFilter = activeFilter === 'all' || card.haystack.includes(activeFilter);
+      const matchesFilter = isAll || card.category === activeFilter || card.category.includes(activeFilter);
       const show = matchesTerm && matchesFilter;
       const hide = !show;
 
@@ -41,11 +44,19 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   };
 
-  search.addEventListener('input', applyFilters);
+  // Schedule filtering using requestAnimationFrame to coalesce rapid typing/click events
+  // into a single DOM update per paint frame, eliminating redundant main-thread processing.
+  const scheduleApplyFilters = () => {
+    if (filterRafId === null) {
+      filterRafId = requestAnimationFrame(applyFiltersNow);
+    }
+  };
+
+  search.addEventListener('input', scheduleApplyFilters);
   filters.forEach((filter) => filter.addEventListener('click', () => {
     activeFilter = filter.dataset.filter;
     filters.forEach((button) => button.classList.toggle('active', button === filter));
-    applyFilters();
+    scheduleApplyFilters();
   }));
 
   if (window.gsap) {
