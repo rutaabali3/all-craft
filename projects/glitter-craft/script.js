@@ -408,14 +408,7 @@ function addLoadingScreen() {
 addLoadingScreen();
 
 // Console welcome message
-console.log(`
-🎨 Welcome to GlitterCraft Website!
-✨ Built with love using HTML, CSS, JavaScript & Bootstrap
-🚀 Featuring smooth scrolling and animations
-📧 Contact: info@glitter-craft.com
-
-Made with ❤️ by the GlitterCraft team
-`);
+logWelcomeMessage("GlitterCraft");
 
 // Performance monitoring
 if ('performance' in window) {

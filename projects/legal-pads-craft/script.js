@@ -408,14 +408,7 @@ function addLoadingScreen() {
 addLoadingScreen();
 
 // Console welcome message
-console.log(`
-🎨 Welcome to LegalPadsCraft Website!
-✨ Built with love using HTML, CSS, JavaScript & Bootstrap
-🚀 Featuring smooth scrolling and animations
-📧 Contact: info@legal-pads-craft.com
-
-Made with ❤️ by the LegalPadsCraft team
-`);
+logWelcomeMessage("LegalPadsCraft");
 
 // Performance monitoring
 if ('performance' in window) {

@@ -408,14 +408,7 @@ function addLoadingScreen() {
 addLoadingScreen();
 
 // Console welcome message
-console.log(`
-🎨 Welcome to PaperClipsCraft Website!
-✨ Built with love using HTML, CSS, JavaScript & Bootstrap
-🚀 Featuring smooth scrolling and animations
-📧 Contact: info@paper-clips-craft.com
-
-Made with ❤️ by the PaperClipsCraft team
-`);
+logWelcomeMessage("PaperClipsCraft");
 
 // Performance monitoring
 if ('performance' in window) {

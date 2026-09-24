@@ -408,14 +408,7 @@ function addLoadingScreen() {
 addLoadingScreen();
 
 // Console welcome message
-console.log(`
-🎨 Welcome to OilPaintsCraft Website!
-✨ Built with love using HTML, CSS, JavaScript & Bootstrap
-🚀 Featuring smooth scrolling and animations
-📧 Contact: info@oil-paints-craft.com
-
-Made with ❤️ by the OilPaintsCraft team
-`);
+logWelcomeMessage("OilPaintsCraft");
 
 // Performance monitoring
 if ('performance' in window) {

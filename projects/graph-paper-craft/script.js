@@ -408,14 +408,7 @@ function addLoadingScreen() {
 addLoadingScreen();
 
 // Console welcome message
-console.log(`
-🎨 Welcome to GraphPaperCraft Website!
-✨ Built with love using HTML, CSS, JavaScript & Bootstrap
-🚀 Featuring smooth scrolling and animations
-📧 Contact: info@graph-paper-craft.com
-
-Made with ❤️ by the GraphPaperCraft team
-`);
+logWelcomeMessage("GraphPaperCraft");
 
 // Performance monitoring
 if ('performance' in window) {

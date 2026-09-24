@@ -408,14 +408,7 @@ function addLoadingScreen() {
 addLoadingScreen();
 
 // Console welcome message
-console.log(`
-🎨 Welcome to GreetingCardsCraft Website!
-✨ Built with love using HTML, CSS, JavaScript & Bootstrap
-🚀 Featuring smooth scrolling and animations
-📧 Contact: info@greeting-cards-craft.com
-
-Made with ❤️ by the GreetingCardsCraft team
-`);
+logWelcomeMessage("GreetingCardsCraft");
 
 // Performance monitoring
 if ('performance' in window) {

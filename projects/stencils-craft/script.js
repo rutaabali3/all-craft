@@ -408,14 +408,7 @@ function addLoadingScreen() {
 addLoadingScreen();
 
 // Console welcome message
-console.log(`
-🎨 Welcome to StencilsCraft Website!
-✨ Built with love using HTML, CSS, JavaScript & Bootstrap
-🚀 Featuring smooth scrolling and animations
-📧 Contact: info@stencils-craft.com
-
-Made with ❤️ by the StencilsCraft team
-`);
+logWelcomeMessage("StencilsCraft");
 
 // Performance monitoring
 if ('performance' in window) {
