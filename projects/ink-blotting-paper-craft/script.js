@@ -408,14 +408,7 @@ function addLoadingScreen() {
 addLoadingScreen();
 
 // Console welcome message
-console.log(`
-🎨 Welcome to InkBlottingPaperCraft Website!
-✨ Built with love using HTML, CSS, JavaScript & Bootstrap
-🚀 Featuring smooth scrolling and animations
-📧 Contact: info@ink-blotting-paper-craft.com
-
-Made with ❤️ by the InkBlottingPaperCraft team
-`);
+logConsoleWelcome('InkBlottingPaperCraft', 'info@ink-blotting-paper-craft.com');
 
 // Performance monitoring
 if ('performance' in window) {

@@ -408,14 +408,7 @@ function addLoadingScreen() {
 addLoadingScreen();
 
 // Console welcome message
-console.log(`
-🎨 Welcome to WatercolorsCraft Website!
-✨ Built with love using HTML, CSS, JavaScript & Bootstrap
-🚀 Featuring smooth scrolling and animations
-📧 Contact: info@watercolors-craft.com
-
-Made with ❤️ by the WatercolorsCraft team
-`);
+logConsoleWelcome('WatercolorsCraft', 'info@watercolors-craft.com');
 
 // Performance monitoring
 if ('performance' in window) {

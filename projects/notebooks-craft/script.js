@@ -408,14 +408,7 @@ function addLoadingScreen() {
 addLoadingScreen();
 
 // Console welcome message
-console.log(`
-🎨 Welcome to NotebooksCraft Website!
-✨ Built with love using HTML, CSS, JavaScript & Bootstrap
-🚀 Featuring smooth scrolling and animations
-📧 Contact: info@notebooks-craft.com
-
-Made with ❤️ by the NotebooksCraft team
-`);
+logConsoleWelcome('NotebooksCraft', 'info@notebooks-craft.com');
 
 // Performance monitoring
 if ('performance' in window) {

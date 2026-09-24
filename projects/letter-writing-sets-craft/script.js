@@ -408,14 +408,7 @@ function addLoadingScreen() {
 addLoadingScreen();
 
 // Console welcome message
-console.log(`
-🎨 Welcome to LetterWritingSetsCraft Website!
-✨ Built with love using HTML, CSS, JavaScript & Bootstrap
-🚀 Featuring smooth scrolling and animations
-📧 Contact: info@letter-writing-sets-craft.com
-
-Made with ❤️ by the LetterWritingSetsCraft team
-`);
+logConsoleWelcome('LetterWritingSetsCraft', 'info@letter-writing-sets-craft.com');
 
 // Performance monitoring
 if ('performance' in window) {

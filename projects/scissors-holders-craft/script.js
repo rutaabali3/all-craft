@@ -408,14 +408,7 @@ function addLoadingScreen() {
 addLoadingScreen();
 
 // Console welcome message
-console.log(`
-🎨 Welcome to ScissorsHoldersCraft Website!
-✨ Built with love using HTML, CSS, JavaScript & Bootstrap
-🚀 Featuring smooth scrolling and animations
-📧 Contact: info@scissors-holders-craft.com
-
-Made with ❤️ by the ScissorsHoldersCraft team
-`);
+logConsoleWelcome('ScissorsHoldersCraft', 'info@scissors-holders-craft.com');
 
 // Performance monitoring
 if ('performance' in window) {

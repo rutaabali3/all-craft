@@ -408,14 +408,7 @@ function addLoadingScreen() {
 addLoadingScreen();
 
 // Console welcome message
-console.log(`
-🎨 Welcome to PencilCasesCraft Website!
-✨ Built with love using HTML, CSS, JavaScript & Bootstrap
-🚀 Featuring smooth scrolling and animations
-📧 Contact: info@pencil-cases-craft.com
-
-Made with ❤️ by the PencilCasesCraft team
-`);
+logConsoleWelcome('PencilCasesCraft', 'info@pencil-cases-craft.com');
 
 // Performance monitoring
 if ('performance' in window) {

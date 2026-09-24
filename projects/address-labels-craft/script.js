@@ -408,14 +408,7 @@ function addLoadingScreen() {
 addLoadingScreen();
 
 // Console welcome message
-console.log(`
-🎨 Welcome to AddressLabelsCraft Website!
-✨ Built with love using HTML, CSS, JavaScript & Bootstrap
-🚀 Featuring smooth scrolling and animations
-📧 Contact: info@address-labels-craft.com
-
-Made with ❤️ by the AddressLabelsCraft team
-`);
+logConsoleWelcome('AddressLabelsCraft', 'info@address-labels-craft.com');
 
 // Performance monitoring
 if ('performance' in window) {
