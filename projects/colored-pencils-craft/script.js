@@ -408,14 +408,7 @@ function addLoadingScreen() {
 addLoadingScreen();
 
 // Console welcome message
-console.log(`
-🎨 Welcome to ColoredPencilsCraft Website!
-✨ Built with love using HTML, CSS, JavaScript & Bootstrap
-🚀 Featuring smooth scrolling and animations
-📧 Contact: info@colored-pencils-craft.com
-
-Made with ❤️ by the ColoredPencilsCraft team
-`);
+logWelcomeMessage("ColoredPencilsCraft", "info@colored-pencils-craft.com");
 
 // Performance monitoring
 if ('performance' in window) {
