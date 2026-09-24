@@ -1,6 +1,7 @@
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from pathlib import Path
 import csv
+import itertools
 import json
 import time
 import requests
@@ -59,14 +60,16 @@ if failed:
 
 with MANIFEST.open(encoding="utf-8", newline="") as handle:
     manifest_rows = list(csv.DictReader(handle, delimiter="\t"))
-for row in manifest_rows:
-    html_path = ROOT / "projects" / row["slug"] / "index.html"
+manifest_rows.sort(key=lambda item: (item["slug"], int(item["index"])))
+for slug, group in itertools.groupby(manifest_rows, key=lambda item: item["slug"]):
+    html_path = ROOT / "projects" / slug / "index.html"
     text = html_path.read_text(encoding="utf-8")
-    old = 'src="./image/item.png"'
-    new = f'src="{row["new_src"]}"'
-    if old not in text:
-        raise RuntimeError(f"missing source reference for {row['slug']} #{row['index']}")
-    text = text.replace(old, new, 1)
+    for row in group:
+        old = 'src="./image/item.png"'
+        new = f'src="{row["new_src"]}"'
+        if old not in text:
+            raise RuntimeError(f"missing source reference for {row['slug']} #{row['index']}")
+        text = text.replace(old, new, 1)
     html_path.write_text(text, encoding="utf-8")
 
 print(f"completed={len(results)} failed=0 log={LOG}")
