@@ -408,14 +408,7 @@ function addLoadingScreen() {
 addLoadingScreen();
 
 // Console welcome message
-console.log(`
-🎨 Welcome to GraphitePencilsCraft Website!
-✨ Built with love using HTML, CSS, JavaScript & Bootstrap
-🚀 Featuring smooth scrolling and animations
-📧 Contact: info@graphite-pencils-craft.com
-
-Made with ❤️ by the GraphitePencilsCraft team
-`);
+logWelcomeMessage('GraphitePencilsCraft');
 
 // Performance monitoring
 if ('performance' in window) {

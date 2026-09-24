@@ -408,14 +408,7 @@ function addLoadingScreen() {
 addLoadingScreen();
 
 // Console welcome message
-console.log(`
-🎨 Welcome to JournalsCraft Website!
-✨ Built with love using HTML, CSS, JavaScript & Bootstrap
-🚀 Featuring smooth scrolling and animations
-📧 Contact: info@journals-craft.com
-
-Made with ❤️ by the JournalsCraft team
-`);
+logWelcomeMessage('JournalsCraft');
 
 // Performance monitoring
 if ('performance' in window) {

@@ -408,14 +408,7 @@ function addLoadingScreen() {
 addLoadingScreen();
 
 // Console welcome message
-console.log(`
-🎨 Welcome to DeskPadsCraft Website!
-✨ Built with love using HTML, CSS, JavaScript & Bootstrap
-🚀 Featuring smooth scrolling and animations
-📧 Contact: info@desk-pads-craft.com
-
-Made with ❤️ by the DeskPadsCraft team
-`);
+logWelcomeMessage('DeskPadsCraft');
 
 // Performance monitoring
 if ('performance' in window) {

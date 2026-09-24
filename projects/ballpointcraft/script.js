@@ -408,14 +408,7 @@ function addLoadingScreen() {
 addLoadingScreen();
 
 // Console welcome message
-console.log(`
-🎨 Welcome to BallpointCraft Website!
-✨ Built with love using HTML, CSS, JavaScript & Bootstrap
-🚀 Featuring smooth scrolling and animations
-📧 Contact: info@ballpointcraft.com
-
-Made with ❤️ by the BallpointCraft team
-`);
+logWelcomeMessage('BallpointCraft');
 
 // Performance monitoring
 if ('performance' in window) {

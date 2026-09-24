@@ -408,14 +408,7 @@ function addLoadingScreen() {
 addLoadingScreen();
 
 // Console welcome message
-console.log(`
-🎨 Welcome to PalettesCraft Website!
-✨ Built with love using HTML, CSS, JavaScript & Bootstrap
-🚀 Featuring smooth scrolling and animations
-📧 Contact: info@palettes-craft.com
-
-Made with ❤️ by the PalettesCraft team
-`);
+logWelcomeMessage('PalettesCraft');
 
 // Performance monitoring
 if ('performance' in window) {

@@ -408,14 +408,7 @@ function addLoadingScreen() {
 addLoadingScreen();
 
 // Console welcome message
-console.log(`
-🎨 Welcome to SetSquaresCraft Website!
-✨ Built with love using HTML, CSS, JavaScript & Bootstrap
-🚀 Featuring smooth scrolling and animations
-📧 Contact: info@set-squares-craft.com
-
-Made with ❤️ by the SetSquaresCraft team
-`);
+logWelcomeMessage('SetSquaresCraft');
 
 // Performance monitoring
 if ('performance' in window) {

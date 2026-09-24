@@ -408,14 +408,7 @@ function addLoadingScreen() {
 addLoadingScreen();
 
 // Console welcome message
-console.log(`
-🎨 Welcome to PocketNotebooksCraft Website!
-✨ Built with love using HTML, CSS, JavaScript & Bootstrap
-🚀 Featuring smooth scrolling and animations
-📧 Contact: info@pocket-notebooks-craft.com
-
-Made with ❤️ by the PocketNotebooksCraft team
-`);
+logWelcomeMessage('PocketNotebooksCraft');
 
 // Performance monitoring
 if ('performance' in window) {

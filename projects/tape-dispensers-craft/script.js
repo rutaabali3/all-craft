@@ -408,14 +408,7 @@ function addLoadingScreen() {
 addLoadingScreen();
 
 // Console welcome message
-console.log(`
-🎨 Welcome to TapeDispensersCraft Website!
-✨ Built with love using HTML, CSS, JavaScript & Bootstrap
-🚀 Featuring smooth scrolling and animations
-📧 Contact: info@tape-dispensers-craft.com
-
-Made with ❤️ by the TapeDispensersCraft team
-`);
+logWelcomeMessage('TapeDispensersCraft');
 
 // Performance monitoring
 if ('performance' in window) {

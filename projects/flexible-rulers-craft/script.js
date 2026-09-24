@@ -408,14 +408,7 @@ function addLoadingScreen() {
 addLoadingScreen();
 
 // Console welcome message
-console.log(`
-🎨 Welcome to FlexibleRulersCraft Website!
-✨ Built with love using HTML, CSS, JavaScript & Bootstrap
-🚀 Featuring smooth scrolling and animations
-📧 Contact: info@flexible-rulers-craft.com
-
-Made with ❤️ by the FlexibleRulersCraft team
-`);
+logWelcomeMessage('FlexibleRulersCraft');
 
 // Performance monitoring
 if ('performance' in window) {

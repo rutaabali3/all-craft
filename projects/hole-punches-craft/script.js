@@ -408,14 +408,7 @@ function addLoadingScreen() {
 addLoadingScreen();
 
 // Console welcome message
-console.log(`
-🎨 Welcome to HolePunchesCraft Website!
-✨ Built with love using HTML, CSS, JavaScript & Bootstrap
-🚀 Featuring smooth scrolling and animations
-📧 Contact: info@hole-punches-craft.com
-
-Made with ❤️ by the HolePunchesCraft team
-`);
+logWelcomeMessage('HolePunchesCraft');
 
 // Performance monitoring
 if ('performance' in window) {
