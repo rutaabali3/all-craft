@@ -408,14 +408,7 @@ function addLoadingScreen() {
 addLoadingScreen();
 
 // Console welcome message
-console.log(`
-🎨 Welcome to FoldersCraft Website!
-✨ Built with love using HTML, CSS, JavaScript & Bootstrap
-🚀 Featuring smooth scrolling and animations
-📧 Contact: info@folders-craft.com
-
-Made with ❤️ by the FoldersCraft team
-`);
+logWelcomeMessage('FoldersCraft', 'info@folders-craft.com');
 
 // Performance monitoring
 if ('performance' in window) {
