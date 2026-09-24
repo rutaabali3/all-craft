@@ -408,14 +408,7 @@ function addLoadingScreen() {
 addLoadingScreen();
 
 // Console welcome message
-console.log(`
-🎨 Welcome to StationeryGiftSetsCraft Website!
-✨ Built with love using HTML, CSS, JavaScript & Bootstrap
-🚀 Featuring smooth scrolling and animations
-📧 Contact: info@stationery-gift-sets-craft.com
-
-Made with ❤️ by the StationeryGiftSetsCraft team
-`);
+logWelcomeMessage("StationeryGiftSetsCraft", "info@stationery-gift-sets-craft.com");
 
 // Performance monitoring
 if ('performance' in window) {

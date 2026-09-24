@@ -408,14 +408,7 @@ function addLoadingScreen() {
 addLoadingScreen();
 
 // Console welcome message
-console.log(`
-🎨 Welcome to PencilLeadsCraft Website!
-✨ Built with love using HTML, CSS, JavaScript & Bootstrap
-🚀 Featuring smooth scrolling and animations
-📧 Contact: info@pencil-leads-craft.com
-
-Made with ❤️ by the PencilLeadsCraft team
-`);
+logWelcomeMessage("PencilLeadsCraft", "info@pencil-leads-craft.com");
 
 // Performance monitoring
 if ('performance' in window) {

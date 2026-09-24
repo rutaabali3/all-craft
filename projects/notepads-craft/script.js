@@ -408,14 +408,7 @@ function addLoadingScreen() {
 addLoadingScreen();
 
 // Console welcome message
-console.log(`
-🎨 Welcome to NotepadsCraft Website!
-✨ Built with love using HTML, CSS, JavaScript & Bootstrap
-🚀 Featuring smooth scrolling and animations
-📧 Contact: info@notepads-craft.com
-
-Made with ❤️ by the NotepadsCraft team
-`);
+logWelcomeMessage("NotepadsCraft", "info@notepads-craft.com");
 
 // Performance monitoring
 if ('performance' in window) {

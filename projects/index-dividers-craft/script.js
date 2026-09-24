@@ -408,14 +408,7 @@ function addLoadingScreen() {
 addLoadingScreen();
 
 // Console welcome message
-console.log(`
-🎨 Welcome to IndexDividersCraft Website!
-✨ Built with love using HTML, CSS, JavaScript & Bootstrap
-🚀 Featuring smooth scrolling and animations
-📧 Contact: info@index-dividers-craft.com
-
-Made with ❤️ by the IndexDividersCraft team
-`);
+logWelcomeMessage("IndexDividersCraft", "info@index-dividers-craft.com");
 
 // Performance monitoring
 if ('performance' in window) {

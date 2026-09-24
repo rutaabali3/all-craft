@@ -408,14 +408,7 @@ function addLoadingScreen() {
 addLoadingScreen();
 
 // Console welcome message
-console.log(`
-🎨 Welcome to ColoredPaperCraft Website!
-✨ Built with love using HTML, CSS, JavaScript & Bootstrap
-🚀 Featuring smooth scrolling and animations
-📧 Contact: info@colored-paper-craft.com
-
-Made with ❤️ by the ColoredPaperCraft team
-`);
+logWelcomeMessage("ColoredPaperCraft", "info@colored-paper-craft.com");
 
 // Performance monitoring
 if ('performance' in window) {
