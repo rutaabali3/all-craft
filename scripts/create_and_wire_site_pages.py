@@ -4,7 +4,6 @@ import html
 
 ROOT = Path(__file__).resolve().parents[1]
 PAGES = ROOT / "pages"
-PAGES.mkdir(exist_ok=True)
 
 PAGE_STYLE = """
 :root { --ink:#243447; --muted:#617184; --line:#dbe4ec; --brand:#2f6fed; --accent:#e95d8a; --paper:#f7fafc; }
@@ -29,7 +28,6 @@ a { color:var(--brand); }
 .footer-inner a { margin-right:14px; }
 @media (max-width:640px) { .container { padding-top:42px; } .nav { padding:16px; } }
 """
-(PAGES / "styles.css").write_text(PAGE_STYLE.strip() + "\n", encoding="utf-8")
 
 content = {
     "privacy-policy": ("Privacy Policy", "How we handle information when you browse All Craft.", [
@@ -96,9 +94,6 @@ def page_html(slug, title, lede, sections):
 <footer class="site-footer"><div class="footer-inner"><span>© 2026 All Craft</span><span><a href="privacy-policy.html">Privacy</a><a href="terms-of-service.html">Terms</a><a href="cookie-policy.html">Cookies</a><a href="sitemap.html">Sitemap</a></span></div></footer>
 </body></html>'''
 
-for slug, (title, lede, sections) in content.items():
-    (PAGES / f"{slug}.html").write_text(page_html(slug, title, lede, sections), encoding="utf-8")
-
 social = {
     "facebook-f": "https://www.facebook.com/",
     "twitter": "https://twitter.com/",
@@ -117,29 +112,41 @@ text_targets = {
     "Cookie Policy": "cookie-policy.html",
 }
 
-for html_path in ROOT.glob("projects/*/index.html"):
-    soup = BeautifulSoup(html_path.read_text(encoding="utf-8"), "html.parser")
-    changed = False
-    for anchor in soup.find_all("a", href="#"):
-        icon = anchor.find("i")
-        icon_classes = set(icon.get("class", [])) if icon else set()
-        href = None
-        for key, target in social.items():
-            if f"fa-{key}" in icon_classes:
-                href = target
-                anchor["target"] = "_blank"
-                anchor["rel"] = ["noopener", "noreferrer"]
-                break
-        if href is None:
-            label = " ".join(anchor.stripped_strings)
-            for text, target in text_targets.items():
-                if label == text:
-                    href = f"../../pages/{target}"
-                    break
-        if href:
-            anchor["href"] = href
-            changed = True
-    if changed:
-        html_path.write_text(str(soup), encoding="utf-8")
 
-print(f"created {len(content)} site pages and rewired project footers")
+def main():
+    PAGES.mkdir(exist_ok=True)
+    (PAGES / "styles.css").write_text(PAGE_STYLE.strip() + "\n", encoding="utf-8")
+
+    for slug, (title, lede, sections) in content.items():
+        (PAGES / f"{slug}.html").write_text(page_html(slug, title, lede, sections), encoding="utf-8")
+
+    for html_path in ROOT.glob("projects/*/index.html"):
+        soup = BeautifulSoup(html_path.read_text(encoding="utf-8"), "html.parser")
+        changed = False
+        for anchor in soup.find_all("a", href="#"):
+            icon = anchor.find("i")
+            icon_classes = set(icon.get("class", [])) if icon else set()
+            href = None
+            for key, target in social.items():
+                if f"fa-{key}" in icon_classes:
+                    href = target
+                    anchor["target"] = "_blank"
+                    anchor["rel"] = ["noopener", "noreferrer"]
+                    break
+            if href is None:
+                label = " ".join(anchor.stripped_strings)
+                for text, target in text_targets.items():
+                    if label == text:
+                        href = f"../../pages/{target}"
+                        break
+            if href:
+                anchor["href"] = href
+                changed = True
+        if changed:
+            html_path.write_text(str(soup), encoding="utf-8")
+
+    print(f"created {len(content)} site pages and rewired project footers")
+
+
+if __name__ == "__main__":
+    main()
