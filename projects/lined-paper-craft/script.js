@@ -408,14 +408,7 @@ function addLoadingScreen() {
 addLoadingScreen();
 
 // Console welcome message
-console.log(`
-🎨 Welcome to LinedPaperCraft Website!
-✨ Built with love using HTML, CSS, JavaScript & Bootstrap
-🚀 Featuring smooth scrolling and animations
-📧 Contact: info@lined-paper-craft.com
-
-Made with ❤️ by the LinedPaperCraft team
-`);
+logWelcomeMessage('LinedPaperCraft', 'info@lined-paper-craft.com');
 
 // Performance monitoring
 if ('performance' in window) {
