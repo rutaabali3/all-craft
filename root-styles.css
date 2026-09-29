@@ -7,7 +7,8 @@
 html { scroll-behavior: smooth; }
 body { margin: 0; color: var(--ink); background: var(--paper); font-family: 'DM Sans', sans-serif; line-height: 1.5; overflow-x: hidden; }
 body:before { content: ''; position: fixed; inset: 0; z-index: -3; background: linear-gradient(135deg, #fffdf8, #f7fbf8 46%, #fff8f2); }
-.grain { position: fixed; inset: 0; z-index: 10; pointer-events: none; opacity: .035; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.55'/%3E%3C/svg%3E"); }
+/* Promote fixed SVG noise overlay to dedicated GPU layer to eliminate re-paints during scrolling/animations */
+.grain { position: fixed; inset: 0; z-index: 10; pointer-events: none; opacity: .035; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.55'/%3E%3C/svg%3E"); transform: translateZ(0); will-change: transform; }
 a { color: inherit; text-decoration: none; }
 .site-header, .hero, .intro-band, .collection, .site-footer { width: min(1180px, calc(100% - 48px)); margin-inline: auto; }
 .site-header { display: flex; justify-content: space-between; align-items: center; padding: 27px 0; }
