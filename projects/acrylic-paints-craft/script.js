@@ -278,37 +278,79 @@ document.head.appendChild(pulseStyle);
 
 // Magnetic effect for interactive elements
 document.querySelectorAll('.btn, .type-card, .pricing-card').forEach(element => {
-    element.addEventListener('mousemove', function(e) {
-        const rect = this.getBoundingClientRect();
-        const x = e.clientX - rect.left - rect.width / 2;
-        const y = e.clientY - rect.top - rect.height / 2;
-        
-        this.style.transform = `translate(${x * 0.1}px, ${y * 0.1}px)`;
+    let rect = null;
+    let rafPending = false;
+    let latestX = 0;
+    let latestY = 0;
+
+    element.addEventListener('mouseenter', function() {
+        rect = this.getBoundingClientRect();
     });
-    
+
+    element.addEventListener('mousemove', function(e) {
+        if (!rect) rect = this.getBoundingClientRect();
+        latestX = e.clientX;
+        latestY = e.clientY;
+
+        if (!rafPending) {
+            rafPending = true;
+            requestAnimationFrame(() => {
+                rafPending = false;
+                if (!rect) return;
+                const x = latestX - rect.left - rect.width / 2;
+                const y = latestY - rect.top - rect.height / 2;
+
+                this.style.transform = `translate(${x * 0.1}px, ${y * 0.1}px)`;
+            });
+        }
+    });
+
     element.addEventListener('mouseleave', function() {
         this.style.transform = '';
+        rect = null;
+        rafPending = false;
     });
 });
 
 // Tilt effect to cards
 document.querySelectorAll('.type-card, .material-card, .vision-card').forEach(card => {
-    card.addEventListener('mousemove', function(e) {
-        const rect = this.getBoundingClientRect();
-        const x = e.clientX - rect.left;
-        const y = e.clientY - rect.top;
-        
-        const centerX = rect.width / 2;
-        const centerY = rect.height / 2;
-        
-        const rotateX = (y - centerY) / 10;
-        const rotateY = (centerX - x) / 10;
-        
-        this.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateZ(10px)`;
+    let rect = null;
+    let rafPending = false;
+    let latestX = 0;
+    let latestY = 0;
+
+    card.addEventListener('mouseenter', function() {
+        rect = this.getBoundingClientRect();
     });
-    
+
+    card.addEventListener('mousemove', function(e) {
+        if (!rect) rect = this.getBoundingClientRect();
+        latestX = e.clientX;
+        latestY = e.clientY;
+
+        if (!rafPending) {
+            rafPending = true;
+            requestAnimationFrame(() => {
+                rafPending = false;
+                if (!rect) return;
+                const x = latestX - rect.left;
+                const y = latestY - rect.top;
+
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+
+                const rotateX = (y - centerY) / 10;
+                const rotateY = (centerX - x) / 10;
+
+                this.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateZ(10px)`;
+            });
+        }
+    });
+
     card.addEventListener('mouseleave', function() {
         this.style.transform = '';
+        rect = null;
+        rafPending = false;
     });
 });
 
