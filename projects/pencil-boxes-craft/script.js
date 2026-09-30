@@ -360,52 +360,7 @@ function addScrollProgress() {
 addScrollProgress();
 
 // Loading screen
-function addLoadingScreen() {
-    const loader = document.createElement('div');
-    loader.id = 'loader';
-    loader.style.cssText = `
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: var(--white);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        z-index: 10000;
-        transition: opacity 0.5s ease-out;
-    `;
-    
-    loader.innerHTML = `
-        <div style="text-align: center;">
-            <div style="width: 60px; height: 60px; border: 4px solid var(--gray-200); border-top: 4px solid var(--primary-color); border-radius: 50%; animation: spin 1s linear infinite; margin-bottom: 1rem;"></div>
-            <h4 style="color: var(--primary-color); font-family: var(--font-display);">Loading PencilBoxesCraft...</h4>
-        </div>
-    `;
-    
-    document.body.appendChild(loader);
-    
-    const spinStyle = document.createElement('style');
-    spinStyle.textContent = `
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-    `;
-    document.head.appendChild(spinStyle);
-    
-    window.addEventListener('load', () => {
-        setTimeout(() => {
-            loader.style.opacity = '0';
-            setTimeout(() => {
-                loader.remove();
-            }, 500);
-        }, 1000);
-    });
-}
-
-addLoadingScreen();
+addLoadingScreen('PencilBoxesCraft');
 
 // Console welcome message
 console.log(`
