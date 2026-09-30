@@ -14,7 +14,9 @@ session = requests.Session()
 
 
 def generate(row):
-    target = ROOT / row["image_path"]
+    target = (ROOT / row["image_path"]).resolve()
+    if not target.is_relative_to(ROOT):
+        raise ValueError(f"Path traversal detected: {row['image_path']}")
     target.parent.mkdir(parents=True, exist_ok=True)
     payload = {"prompt": row["prompt"], "ratio": "1:1"}
     last_error = None
@@ -38,24 +40,25 @@ def generate(row):
     return {"slug": row["slug"], "status": "failed", "error": last_error, "path": str(target)}
 
 
-with MANIFEST.open(encoding="utf-8", newline="") as handle:
-    rows = list(csv.DictReader(handle, delimiter="\t"))
+if __name__ == "__main__":
+    with MANIFEST.open(encoding="utf-8", newline="") as handle:
+        rows = list(csv.DictReader(handle, delimiter="\t"))
 
-results = []
-with ThreadPoolExecutor(max_workers=8) as executor:
-    futures = [executor.submit(generate, row) for row in rows]
-    for index, future in enumerate(as_completed(futures), start=1):
-        result = future.result()
-        results.append(result)
-        print(f"[{index}/{len(rows)}] {result['slug']}: {result['status']}", flush=True)
+    results = []
+    with ThreadPoolExecutor(max_workers=8) as executor:
+        futures = [executor.submit(generate, row) for row in rows]
+        for index, future in enumerate(as_completed(futures), start=1):
+            result = future.result()
+            results.append(result)
+            print(f"[{index}/{len(rows)}] {result['slug']}: {result['status']}", flush=True)
 
-results.sort(key=lambda item: item["slug"])
-with LOG.open("w", encoding="utf-8") as handle:
-    for result in results:
-        handle.write(json.dumps(result, ensure_ascii=False) + "\n")
+    results.sort(key=lambda item: item["slug"])
+    with LOG.open("w", encoding="utf-8") as handle:
+        for result in results:
+            handle.write(json.dumps(result, ensure_ascii=False) + "\n")
 
-failed = [result for result in results if result["status"] == "failed"]
-print(f"completed={len(results)} failed={len(failed)} log={LOG}")
-if failed:
-    print("failed slugs:", ", ".join(result["slug"] for result in failed))
-    raise SystemExit(1)
+    failed = [result for result in results if result["status"] == "failed"]
+    print(f"completed={len(results)} failed={len(failed)} log={LOG}")
+    if failed:
+        print("failed slugs:", ", ".join(result["slug"] for result in failed))
+        raise SystemExit(1)
