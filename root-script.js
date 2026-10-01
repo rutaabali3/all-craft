@@ -16,15 +16,28 @@ document.addEventListener('DOMContentLoaded', () => {
   });
   let activeFilter = 'all';
 
+  // Cache previous query/filter parameters to avoid redundant filtering loops on duplicate events
+  let lastTerm = null;
+  let lastFilter = null;
+
   const applyFilters = () => {
     const term = search.value.trim().toLowerCase();
-    let visible = 0;
 
+    // Fast return if neither search query nor active category filter changed
+    if (term === lastTerm && activeFilter === lastFilter) {
+      return;
+    }
+    lastTerm = term;
+    lastFilter = activeFilter;
+
+    let visible = 0;
+    const isAll = activeFilter === 'all';
+    const hasTerm = term.length > 0;
+
+    // Fast boolean evaluation avoids redundant evaluation when filter or search query is empty
     for (let i = 0; i < cardData.length; i++) {
       const card = cardData[i];
-      const matchesTerm = !term || card.name.includes(term);
-      const matchesFilter = activeFilter === 'all' || card.haystack.includes(activeFilter);
-      const show = matchesTerm && matchesFilter;
+      const show = (isAll || card.haystack.includes(activeFilter)) && (!hasTerm || card.name.includes(term));
       const hide = !show;
 
       // Only mutate DOM if hidden state changes to eliminate unnecessary reflows and paints
