@@ -1,13 +1,52 @@
 
-        // Navbar scroll effect
-window.addEventListener('scroll', () => {
+        // Unified frame-throttled passive scroll listener for navbar, parallax, and scroll progress indicator
+(function initUnifiedScroll() {
     const navbar = document.getElementById('mainNav');
-    if (window.scrollY > 100) {
-        navbar.classList.add('scrolled');
-    } else {
-        navbar.classList.remove('scrolled');
-    }
-});
+    const heroBackground = document.querySelector('.hero-background');
+    const floatingElements = document.querySelectorAll('.floating-element');
+
+    const progressBar = document.createElement('div');
+    progressBar.style.cssText = `
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 0%;
+        height: 3px;
+        background: var(--gradient-primary);
+        z-index: 9999;
+        transition: width 0.1s ease-out;
+    `;
+    document.body.appendChild(progressBar);
+
+    let rafId = null;
+
+    window.addEventListener('scroll', () => {
+        if (!rafId) {
+            rafId = requestAnimationFrame(() => {
+                rafId = null;
+                const scrolled = window.scrollY || window.pageYOffset;
+
+                if (navbar) {
+                    if (scrolled > 100) navbar.classList.add('scrolled');
+                    else navbar.classList.remove('scrolled');
+                }
+
+                if (heroBackground) {
+                    heroBackground.style.transform = `translateY(${scrolled * 0.5}px)`;
+                }
+                floatingElements.forEach((element, index) => {
+                    const speed = 0.3 + (index * 0.1);
+                    element.style.transform = `translateY(${scrolled * speed}px)`;
+                });
+
+                const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+                if (docHeight > 0) {
+                    progressBar.style.width = ((scrolled / docHeight) * 100) + '%';
+                }
+            });
+        }
+    }, { passive: true });
+})();
 
 // Smooth scroll for navigation links (native)
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -59,21 +98,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
-// Parallax effect for hero section
-window.addEventListener('scroll', () => {
-    const scrolled = window.pageYOffset;
-    const heroBackground = document.querySelector('.hero-background');
-    const floatingElements = document.querySelectorAll('.floating-element');
-    
-    if (heroBackground) {
-        heroBackground.style.transform = `translateY(${scrolled * 0.5}px)`;
-    }
-    
-    floatingElements.forEach((element, index) => {
-        const speed = 0.3 + (index * 0.1);
-        element.style.transform = `translateY(${scrolled * speed}px)`;
-    });
-});
+
 
 // Counter animation for statistics
 function animateCounter(element, target, duration = 2000) {
@@ -276,40 +301,57 @@ pulseStyle.textContent = `
 `;
 document.head.appendChild(pulseStyle);
 
-// Magnetic effect for interactive elements
-document.querySelectorAll('.btn, .type-card, .pricing-card').forEach(element => {
-    element.addEventListener('mousemove', function(e) {
-        const rect = this.getBoundingClientRect();
-        const x = e.clientX - rect.left - rect.width / 2;
-        const y = e.clientY - rect.top - rect.height / 2;
-        
-        this.style.transform = `translate(${x * 0.1}px, ${y * 0.1}px)`;
-    });
-    
-    element.addEventListener('mouseleave', function() {
-        this.style.transform = '';
-    });
-});
+// Optimized Magnetic & Tilt card effects using requestAnimationFrame and cached dimensions
+// Caches bounding rect on mouseenter and batches DOM style updates with requestAnimationFrame
+// to eliminate forced layout reflows (getBoundingClientRect thrashing) during mouse move events.
+document.querySelectorAll('.btn, .type-card, .pricing-card, .material-card, .vision-card').forEach(element => {
+    let rect = null;
+    let rafId = null;
+    let mouseX = 0, mouseY = 0;
 
-// Tilt effect to cards
-document.querySelectorAll('.type-card, .material-card, .vision-card').forEach(card => {
-    card.addEventListener('mousemove', function(e) {
-        const rect = this.getBoundingClientRect();
-        const x = e.clientX - rect.left;
-        const y = e.clientY - rect.top;
-        
-        const centerX = rect.width / 2;
-        const centerY = rect.height / 2;
-        
-        const rotateX = (y - centerY) / 10;
-        const rotateY = (centerX - x) / 10;
-        
-        this.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateZ(10px)`;
-    });
-    
-    card.addEventListener('mouseleave', function() {
-        this.style.transform = '';
-    });
+    const isCard = element.matches('.type-card, .material-card, .vision-card');
+    const isMagnetic = element.matches('.btn, .type-card, .pricing-card');
+
+    element.addEventListener('mouseenter', () => {
+        rect = element.getBoundingClientRect();
+    }, { passive: true });
+
+    element.addEventListener('mousemove', (e) => {
+        if (!rect) rect = element.getBoundingClientRect();
+        mouseX = e.clientX;
+        mouseY = e.clientY;
+
+        if (!rafId) {
+            rafId = requestAnimationFrame(() => {
+                rafId = null;
+                let transformStr = '';
+                if (isCard) {
+                    const x = mouseX - rect.left;
+                    const y = mouseY - rect.top;
+                    const centerX = rect.width / 2;
+                    const centerY = rect.height / 2;
+                    const rotateX = (y - centerY) / 10;
+                    const rotateY = (centerX - x) / 10;
+                    transformStr += `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateZ(10px) `;
+                }
+                if (isMagnetic && !isCard) {
+                    const x = mouseX - rect.left - rect.width / 2;
+                    const y = mouseY - rect.top - rect.height / 2;
+                    transformStr += `translate(${x * 0.1}px, ${y * 0.1}px) `;
+                }
+                element.style.transform = transformStr.trim();
+            });
+        }
+    }, { passive: true });
+
+    element.addEventListener('mouseleave', () => {
+        if (rafId) {
+            cancelAnimationFrame(rafId);
+            rafId = null;
+        }
+        rect = null;
+        element.style.transform = '';
+    }, { passive: true });
 });
 
 // Progressive loading effect
@@ -334,30 +376,7 @@ document.addEventListener('DOMContentLoaded', () => {
     setTimeout(progressiveLoad, 1000);
 });
 
-// Scroll progress indicator
-function addScrollProgress() {
-    const progressBar = document.createElement('div');
-    progressBar.style.cssText = `
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 0%;
-        height: 3px;
-        background: var(--gradient-primary);
-        z-index: 9999;
-        transition: width 0.1s ease-out;
-    `;
-    document.body.appendChild(progressBar);
-    
-    window.addEventListener('scroll', () => {
-        const scrollTop = window.pageYOffset;
-        const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-        const scrollPercent = (scrollTop / docHeight) * 100;
-        progressBar.style.width = scrollPercent + '%';
-    });
-}
 
-addScrollProgress();
 
 // Loading screen
 function addLoadingScreen() {
