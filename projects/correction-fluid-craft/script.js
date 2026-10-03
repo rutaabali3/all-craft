@@ -408,14 +408,7 @@ function addLoadingScreen() {
 addLoadingScreen();
 
 // Console welcome message
-console.log(`
-🎨 Welcome to CorrectionFluidCraft Website!
-✨ Built with love using HTML, CSS, JavaScript & Bootstrap
-🚀 Featuring smooth scrolling and animations
-📧 Contact: info@correction-fluid-craft.com
-
-Made with ❤️ by the CorrectionFluidCraft team
-`);
+logWelcomeMessage("CorrectionFluidCraft", "info@correction-fluid-craft.com");
 
 // Performance monitoring
 if ('performance' in window) {

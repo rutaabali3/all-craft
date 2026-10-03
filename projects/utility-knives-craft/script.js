@@ -408,14 +408,7 @@ function addLoadingScreen() {
 addLoadingScreen();
 
 // Console welcome message
-console.log(`
-🎨 Welcome to UtilityKnivesCraft Website!
-✨ Built with love using HTML, CSS, JavaScript & Bootstrap
-🚀 Featuring smooth scrolling and animations
-📧 Contact: info@utility-knives-craft.com
-
-Made with ❤️ by the UtilityKnivesCraft team
-`);
+logWelcomeMessage("UtilityKnivesCraft", "info@utility-knives-craft.com");
 
 // Performance monitoring
 if ('performance' in window) {

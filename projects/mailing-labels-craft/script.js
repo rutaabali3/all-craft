@@ -408,14 +408,7 @@ function addLoadingScreen() {
 addLoadingScreen();
 
 // Console welcome message
-console.log(`
-🎨 Welcome to MailingLabelsCraft Website!
-✨ Built with love using HTML, CSS, JavaScript & Bootstrap
-🚀 Featuring smooth scrolling and animations
-📧 Contact: info@mailing-labels-craft.com
-
-Made with ❤️ by the MailingLabelsCraft team
-`);
+logWelcomeMessage("MailingLabelsCraft", "info@mailing-labels-craft.com");
 
 // Performance monitoring
 if ('performance' in window) {

@@ -408,14 +408,7 @@ function addLoadingScreen() {
 addLoadingScreen();
 
 // Console welcome message
-console.log(`
-🎨 Welcome to FlashcardsCraft Website!
-✨ Built with love using HTML, CSS, JavaScript & Bootstrap
-🚀 Featuring smooth scrolling and animations
-📧 Contact: info@flashcards-craft.com
-
-Made with ❤️ by the FlashcardsCraft team
-`);
+logWelcomeMessage("FlashcardsCraft", "info@flashcards-craft.com");
 
 // Performance monitoring
 if ('performance' in window) {

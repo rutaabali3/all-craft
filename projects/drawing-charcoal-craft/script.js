@@ -408,14 +408,7 @@ function addLoadingScreen() {
 addLoadingScreen();
 
 // Console welcome message
-console.log(`
-🎨 Welcome to DrawingCharcoalCraft Website!
-✨ Built with love using HTML, CSS, JavaScript & Bootstrap
-🚀 Featuring smooth scrolling and animations
-📧 Contact: info@drawing-charcoal-craft.com
-
-Made with ❤️ by the DrawingCharcoalCraft team
-`);
+logWelcomeMessage("DrawingCharcoalCraft", "info@drawing-charcoal-craft.com");
 
 // Performance monitoring
 if ('performance' in window) {

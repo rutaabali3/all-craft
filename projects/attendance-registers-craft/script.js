@@ -408,14 +408,7 @@ function addLoadingScreen() {
 addLoadingScreen();
 
 // Console welcome message
-console.log(`
-🎨 Welcome to AttendanceRegistersCraft Website!
-✨ Built with love using HTML, CSS, JavaScript & Bootstrap
-🚀 Featuring smooth scrolling and animations
-📧 Contact: info@attendance-registers-craft.com
-
-Made with ❤️ by the AttendanceRegistersCraft team
-`);
+logWelcomeMessage("AttendanceRegistersCraft", "info@attendance-registers-craft.com");
 
 // Performance monitoring
 if ('performance' in window) {

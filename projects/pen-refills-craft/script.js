@@ -408,14 +408,7 @@ function addLoadingScreen() {
 addLoadingScreen();
 
 // Console welcome message
-console.log(`
-🎨 Welcome to PenRefillsCraft Website!
-✨ Built with love using HTML, CSS, JavaScript & Bootstrap
-🚀 Featuring smooth scrolling and animations
-📧 Contact: info@pen-refills-craft.com
-
-Made with ❤️ by the PenRefillsCraft team
-`);
+logWelcomeMessage("PenRefillsCraft", "info@pen-refills-craft.com");
 
 // Performance monitoring
 if ('performance' in window) {
