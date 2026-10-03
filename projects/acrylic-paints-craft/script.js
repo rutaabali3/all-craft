@@ -60,10 +60,11 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 // Parallax effect for hero section
+const heroBackground = document.querySelector('.hero-background');
+const floatingElements = document.querySelectorAll('.floating-element');
+
 window.addEventListener('scroll', () => {
     const scrolled = window.pageYOffset;
-    const heroBackground = document.querySelector('.hero-background');
-    const floatingElements = document.querySelectorAll('.floating-element');
     
     if (heroBackground) {
         heroBackground.style.transform = `translateY(${scrolled * 0.5}px)`;
