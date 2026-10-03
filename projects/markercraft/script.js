@@ -408,14 +408,7 @@ function addLoadingScreen() {
 addLoadingScreen();
 
 // Console welcome message
-console.log(`
-🎨 Welcome to MarkerCraft Website!
-✨ Built with love using HTML, CSS, JavaScript & Bootstrap
-🚀 Featuring smooth scrolling and animations
-📧 Contact: info@markercraft.com
-
-Made with ❤️ by the MarkerCraft team
-`);
+logWelcomeMessage('MarkerCraft', 'info@markercraft.com');
 
 // Performance monitoring
 if ('performance' in window) {

@@ -408,14 +408,7 @@ function addLoadingScreen() {
 addLoadingScreen();
 
 // Console welcome message
-console.log(`
-🎨 Welcome to PencilBoxesCraft Website!
-✨ Built with love using HTML, CSS, JavaScript & Bootstrap
-🚀 Featuring smooth scrolling and animations
-📧 Contact: info@pencil-boxes-craft.com
-
-Made with ❤️ by the PencilBoxesCraft team
-`);
+logWelcomeMessage('PencilBoxesCraft', 'info@pencil-boxes-craft.com');
 
 // Performance monitoring
 if ('performance' in window) {

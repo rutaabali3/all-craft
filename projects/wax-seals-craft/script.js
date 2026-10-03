@@ -408,14 +408,7 @@ function addLoadingScreen() {
 addLoadingScreen();
 
 // Console welcome message
-console.log(`
-🎨 Welcome to WaxSealsCraft Website!
-✨ Built with love using HTML, CSS, JavaScript & Bootstrap
-🚀 Featuring smooth scrolling and animations
-📧 Contact: info@wax-seals-craft.com
-
-Made with ❤️ by the WaxSealsCraft team
-`);
+logWelcomeMessage('WaxSealsCraft', 'info@wax-seals-craft.com');
 
 // Performance monitoring
 if ('performance' in window) {
