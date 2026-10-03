@@ -408,14 +408,7 @@ function addLoadingScreen() {
 addLoadingScreen();
 
 // Console welcome message
-console.log(`
-🎨 Welcome to PushPinsCraft Website!
-✨ Built with love using HTML, CSS, JavaScript & Bootstrap
-🚀 Featuring smooth scrolling and animations
-📧 Contact: info@push-pins-craft.com
-
-Made with ❤️ by the PushPinsCraft team
-`);
+logWelcomeMessage('PushPinsCraft');
 
 // Performance monitoring
 if ('performance' in window) {

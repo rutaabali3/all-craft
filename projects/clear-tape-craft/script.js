@@ -408,14 +408,7 @@ function addLoadingScreen() {
 addLoadingScreen();
 
 // Console welcome message
-console.log(`
-🎨 Welcome to ClearTapeCraft Website!
-✨ Built with love using HTML, CSS, JavaScript & Bootstrap
-🚀 Featuring smooth scrolling and animations
-📧 Contact: info@clear-tape-craft.com
-
-Made with ❤️ by the ClearTapeCraft team
-`);
+logWelcomeMessage('ClearTapeCraft');
 
 // Performance monitoring
 if ('performance' in window) {

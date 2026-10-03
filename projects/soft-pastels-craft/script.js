@@ -408,14 +408,7 @@ function addLoadingScreen() {
 addLoadingScreen();
 
 // Console welcome message
-console.log(`
-🎨 Welcome to SoftPastelsCraft Website!
-✨ Built with love using HTML, CSS, JavaScript & Bootstrap
-🚀 Featuring smooth scrolling and animations
-📧 Contact: info@soft-pastels-craft.com
-
-Made with ❤️ by the SoftPastelsCraft team
-`);
+logWelcomeMessage('SoftPastelsCraft');
 
 // Performance monitoring
 if ('performance' in window) {

@@ -408,14 +408,7 @@ function addLoadingScreen() {
 addLoadingScreen();
 
 // Console welcome message
-console.log(`
-🎨 Welcome to FountainCraft Website!
-✨ Built with love using HTML, CSS, JavaScript & Bootstrap
-🚀 Featuring smooth scrolling and animations
-📧 Contact: info@fountaincraft.com
-
-Made with ❤️ by the FountainCraft team
-`);
+logWelcomeMessage('FountainCraft');
 
 // Performance monitoring
 if ('performance' in window) {

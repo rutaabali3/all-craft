@@ -408,14 +408,7 @@ function addLoadingScreen() {
 addLoadingScreen();
 
 // Console welcome message
-console.log(`
-🎨 Welcome to OilPastelsCraft Website!
-✨ Built with love using HTML, CSS, JavaScript & Bootstrap
-🚀 Featuring smooth scrolling and animations
-📧 Contact: info@oil-pastels-craft.com
-
-Made with ❤️ by the OilPastelsCraft team
-`);
+logWelcomeMessage('OilPastelsCraft');
 
 // Performance monitoring
 if ('performance' in window) {

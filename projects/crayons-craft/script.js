@@ -408,14 +408,7 @@ function addLoadingScreen() {
 addLoadingScreen();
 
 // Console welcome message
-console.log(`
-🎨 Welcome to CrayonsCraft Website!
-✨ Built with love using HTML, CSS, JavaScript & Bootstrap
-🚀 Featuring smooth scrolling and animations
-📧 Contact: info@crayons-craft.com
-
-Made with ❤️ by the CrayonsCraft team
-`);
+logWelcomeMessage('CrayonsCraft');
 
 // Performance monitoring
 if ('performance' in window) {

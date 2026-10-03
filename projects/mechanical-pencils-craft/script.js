@@ -408,14 +408,7 @@ function addLoadingScreen() {
 addLoadingScreen();
 
 // Console welcome message
-console.log(`
-🎨 Welcome to MechanicalPencilsCraft Website!
-✨ Built with love using HTML, CSS, JavaScript & Bootstrap
-🚀 Featuring smooth scrolling and animations
-📧 Contact: info@mechanical-pencils-craft.com
-
-Made with ❤️ by the MechanicalPencilsCraft team
-`);
+logWelcomeMessage('MechanicalPencilsCraft');
 
 // Performance monitoring
 if ('performance' in window) {

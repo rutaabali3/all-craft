@@ -408,14 +408,7 @@ function addLoadingScreen() {
 addLoadingScreen();
 
 // Console welcome message
-console.log(`
-🎨 Welcome to VisitorBooksCraft Website!
-✨ Built with love using HTML, CSS, JavaScript & Bootstrap
-🚀 Featuring smooth scrolling and animations
-📧 Contact: info@visitor-books-craft.com
-
-Made with ❤️ by the VisitorBooksCraft team
-`);
+logWelcomeMessage('VisitorBooksCraft');
 
 // Performance monitoring
 if ('performance' in window) {

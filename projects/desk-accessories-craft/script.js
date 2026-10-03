@@ -408,14 +408,7 @@ function addLoadingScreen() {
 addLoadingScreen();
 
 // Console welcome message
-console.log(`
-🎨 Welcome to DeskAccessoriesCraft Website!
-✨ Built with love using HTML, CSS, JavaScript & Bootstrap
-🚀 Featuring smooth scrolling and animations
-📧 Contact: info@desk-accessories-craft.com
-
-Made with ❤️ by the DeskAccessoriesCraft team
-`);
+logWelcomeMessage('DeskAccessoriesCraft');
 
 // Performance monitoring
 if ('performance' in window) {

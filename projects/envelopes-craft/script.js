@@ -408,14 +408,7 @@ function addLoadingScreen() {
 addLoadingScreen();
 
 // Console welcome message
-console.log(`
-🎨 Welcome to EnvelopesCraft Website!
-✨ Built with love using HTML, CSS, JavaScript & Bootstrap
-🚀 Featuring smooth scrolling and animations
-📧 Contact: info@envelopes-craft.com
-
-Made with ❤️ by the EnvelopesCraft team
-`);
+logWelcomeMessage('EnvelopesCraft');
 
 // Performance monitoring
 if ('performance' in window) {

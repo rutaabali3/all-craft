@@ -408,14 +408,7 @@ function addLoadingScreen() {
 addLoadingScreen();
 
 // Console welcome message
-console.log(`
-🎨 Welcome to WritingSetsCraft Website!
-✨ Built with love using HTML, CSS, JavaScript & Bootstrap
-🚀 Featuring smooth scrolling and animations
-📧 Contact: info@writing-sets-craft.com
-
-Made with ❤️ by the WritingSetsCraft team
-`);
+logWelcomeMessage('WritingSetsCraft');
 
 // Performance monitoring
 if ('performance' in window) {
