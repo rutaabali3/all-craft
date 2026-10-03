@@ -408,14 +408,7 @@ function addLoadingScreen() {
 addLoadingScreen();
 
 // Console welcome message
-console.log(`
-🎨 Welcome to ProtractorsCraft Website!
-✨ Built with love using HTML, CSS, JavaScript & Bootstrap
-🚀 Featuring smooth scrolling and animations
-📧 Contact: info@protractors-craft.com
-
-Made with ❤️ by the ProtractorsCraft team
-`);
+logConsoleWelcome('ProtractorsCraft', 'info@protractors-craft.com');
 
 // Performance monitoring
 if ('performance' in window) {

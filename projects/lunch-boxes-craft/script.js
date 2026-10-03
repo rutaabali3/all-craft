@@ -408,14 +408,7 @@ function addLoadingScreen() {
 addLoadingScreen();
 
 // Console welcome message
-console.log(`
-🎨 Welcome to LunchBoxesCraft Website!
-✨ Built with love using HTML, CSS, JavaScript & Bootstrap
-🚀 Featuring smooth scrolling and animations
-📧 Contact: info@lunch-boxes-craft.com
-
-Made with ❤️ by the LunchBoxesCraft team
-`);
+logConsoleWelcome('LunchBoxesCraft', 'info@lunch-boxes-craft.com');
 
 // Performance monitoring
 if ('performance' in window) {

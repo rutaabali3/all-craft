@@ -408,14 +408,7 @@ function addLoadingScreen() {
 addLoadingScreen();
 
 // Console welcome message
-console.log(`
-🎨 Welcome to InvitationCardsCraft Website!
-✨ Built with love using HTML, CSS, JavaScript & Bootstrap
-🚀 Featuring smooth scrolling and animations
-📧 Contact: info@invitation-cards-craft.com
-
-Made with ❤️ by the InvitationCardsCraft team
-`);
+logConsoleWelcome('InvitationCardsCraft', 'info@invitation-cards-craft.com');
 
 // Performance monitoring
 if ('performance' in window) {

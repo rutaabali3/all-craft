@@ -408,14 +408,7 @@ function addLoadingScreen() {
 addLoadingScreen();
 
 // Console welcome message
-console.log(`
-🎨 Welcome to CorrectionPensCraft Website!
-✨ Built with love using HTML, CSS, JavaScript & Bootstrap
-🚀 Featuring smooth scrolling and animations
-📧 Contact: info@correction-pens-craft.com
-
-Made with ❤️ by the CorrectionPensCraft team
-`);
+logConsoleWelcome('CorrectionPensCraft', 'info@correction-pens-craft.com');
 
 // Performance monitoring
 if ('performance' in window) {

@@ -408,14 +408,7 @@ function addLoadingScreen() {
 addLoadingScreen();
 
 // Console welcome message
-console.log(`
-🎨 Welcome to FinelinerCraft Website!
-✨ Built with love using HTML, CSS, JavaScript & Bootstrap
-🚀 Featuring smooth scrolling and animations
-📧 Contact: info@finelinercraft.com
-
-Made with ❤️ by the FinelinerCraft team
-`);
+logConsoleWelcome('FinelinerCraft', 'info@finelinercraft.com');
 
 // Performance monitoring
 if ('performance' in window) {

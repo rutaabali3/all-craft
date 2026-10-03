@@ -408,14 +408,7 @@ function addLoadingScreen() {
 addLoadingScreen();
 
 // Console welcome message
-console.log(`
-🎨 Welcome to BinderClipsCraft Website!
-✨ Built with love using HTML, CSS, JavaScript & Bootstrap
-🚀 Featuring smooth scrolling and animations
-📧 Contact: info@binder-clips-craft.com
-
-Made with ❤️ by the BinderClipsCraft team
-`);
+logConsoleWelcome('BinderClipsCraft', 'info@binder-clips-craft.com');
 
 // Performance monitoring
 if ('performance' in window) {

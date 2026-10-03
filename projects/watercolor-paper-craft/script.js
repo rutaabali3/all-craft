@@ -408,14 +408,7 @@ function addLoadingScreen() {
 addLoadingScreen();
 
 // Console welcome message
-console.log(`
-🎨 Welcome to WatercolorPaperCraft Website!
-✨ Built with love using HTML, CSS, JavaScript & Bootstrap
-🚀 Featuring smooth scrolling and animations
-📧 Contact: info@watercolor-paper-craft.com
-
-Made with ❤️ by the WatercolorPaperCraft team
-`);
+logConsoleWelcome('WatercolorPaperCraft', 'info@watercolor-paper-craft.com');
 
 // Performance monitoring
 if ('performance' in window) {
