@@ -408,14 +408,7 @@ function addLoadingScreen() {
 addLoadingScreen();
 
 // Console welcome message
-console.log(`
-🎨 Welcome to RollerballCraft Website!
-✨ Built with love using HTML, CSS, JavaScript & Bootstrap
-🚀 Featuring smooth scrolling and animations
-📧 Contact: info@rollerballcraft.com
-
-Made with ❤️ by the RollerballCraft team
-`);
+logWelcomeMessage("RollerballCraft", "info@rollerballcraft.com");
 
 // Performance monitoring
 if ('performance' in window) {

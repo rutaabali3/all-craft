@@ -408,14 +408,7 @@ function addLoadingScreen() {
 addLoadingScreen();
 
 // Console welcome message
-console.log(`
-🎨 Welcome to IndexCardsCraft Website!
-✨ Built with love using HTML, CSS, JavaScript & Bootstrap
-🚀 Featuring smooth scrolling and animations
-📧 Contact: info@index-cards-craft.com
-
-Made with ❤️ by the IndexCardsCraft team
-`);
+logWelcomeMessage("IndexCardsCraft", "info@index-cards-craft.com");
 
 // Performance monitoring
 if ('performance' in window) {

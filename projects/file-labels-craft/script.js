@@ -408,14 +408,7 @@ function addLoadingScreen() {
 addLoadingScreen();
 
 // Console welcome message
-console.log(`
-🎨 Welcome to FileLabelsCraft Website!
-✨ Built with love using HTML, CSS, JavaScript & Bootstrap
-🚀 Featuring smooth scrolling and animations
-📧 Contact: info@file-labels-craft.com
-
-Made with ❤️ by the FileLabelsCraft team
-`);
+logWelcomeMessage("FileLabelsCraft", "info@file-labels-craft.com");
 
 // Performance monitoring
 if ('performance' in window) {

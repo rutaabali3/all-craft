@@ -408,14 +408,7 @@ function addLoadingScreen() {
 addLoadingScreen();
 
 // Console welcome message
-console.log(`
-🎨 Welcome to HighlighterCraft Website!
-✨ Built with love using HTML, CSS, JavaScript & Bootstrap
-🚀 Featuring smooth scrolling and animations
-📧 Contact: info@highlightercraft.com
-
-Made with ❤️ by the HighlighterCraft team
-`);
+logWelcomeMessage("HighlighterCraft", "info@highlightercraft.com");
 
 // Performance monitoring
 if ('performance' in window) {

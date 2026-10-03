@@ -408,14 +408,7 @@ function addLoadingScreen() {
 addLoadingScreen();
 
 // Console welcome message
-console.log(`
-🎨 Welcome to DocumentBagsCraft Website!
-✨ Built with love using HTML, CSS, JavaScript & Bootstrap
-🚀 Featuring smooth scrolling and animations
-📧 Contact: info@document-bags-craft.com
-
-Made with ❤️ by the DocumentBagsCraft team
-`);
+logWelcomeMessage("DocumentBagsCraft", "info@document-bags-craft.com");
 
 // Performance monitoring
 if ('performance' in window) {
