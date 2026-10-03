@@ -408,14 +408,7 @@ function addLoadingScreen() {
 addLoadingScreen();
 
 // Console welcome message
-console.log(`
-🎨 Welcome to DeskOrganizersCraft Website!
-✨ Built with love using HTML, CSS, JavaScript & Bootstrap
-🚀 Featuring smooth scrolling and animations
-📧 Contact: info@desk-organizers-craft.com
-
-Made with ❤️ by the DeskOrganizersCraft team
-`);
+logWelcomeMessage("DeskOrganizersCraft");
 
 // Performance monitoring
 if ('performance' in window) {

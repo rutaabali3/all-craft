@@ -408,14 +408,7 @@ function addLoadingScreen() {
 addLoadingScreen();
 
 // Console welcome message
-console.log(`
-🎨 Welcome to HardcoverNotebooksCraft Website!
-✨ Built with love using HTML, CSS, JavaScript & Bootstrap
-🚀 Featuring smooth scrolling and animations
-📧 Contact: info@hardcover-notebooks-craft.com
-
-Made with ❤️ by the HardcoverNotebooksCraft team
-`);
+logWelcomeMessage("HardcoverNotebooksCraft");
 
 // Performance monitoring
 if ('performance' in window) {

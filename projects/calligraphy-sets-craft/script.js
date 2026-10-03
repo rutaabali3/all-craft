@@ -408,14 +408,7 @@ function addLoadingScreen() {
 addLoadingScreen();
 
 // Console welcome message
-console.log(`
-🎨 Welcome to CalligraphySetsCraft Website!
-✨ Built with love using HTML, CSS, JavaScript & Bootstrap
-🚀 Featuring smooth scrolling and animations
-📧 Contact: info@calligraphy-sets-craft.com
-
-Made with ❤️ by the CalligraphySetsCraft team
-`);
+logWelcomeMessage("CalligraphySetsCraft");
 
 // Performance monitoring
 if ('performance' in window) {

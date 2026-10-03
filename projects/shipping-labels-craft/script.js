@@ -408,14 +408,7 @@ function addLoadingScreen() {
 addLoadingScreen();
 
 // Console welcome message
-console.log(`
-🎨 Welcome to ShippingLabelsCraft Website!
-✨ Built with love using HTML, CSS, JavaScript & Bootstrap
-🚀 Featuring smooth scrolling and animations
-📧 Contact: info@shipping-labels-craft.com
-
-Made with ❤️ by the ShippingLabelsCraft team
-`);
+logWelcomeMessage("ShippingLabelsCraft");
 
 // Performance monitoring
 if ('performance' in window) {

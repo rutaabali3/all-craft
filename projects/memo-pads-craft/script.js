@@ -408,14 +408,7 @@ function addLoadingScreen() {
 addLoadingScreen();
 
 // Console welcome message
-console.log(`
-🎨 Welcome to MemoPadsCraft Website!
-✨ Built with love using HTML, CSS, JavaScript & Bootstrap
-🚀 Featuring smooth scrolling and animations
-📧 Contact: info@memo-pads-craft.com
-
-Made with ❤️ by the MemoPadsCraft team
-`);
+logWelcomeMessage("MemoPadsCraft");
 
 // Performance monitoring
 if ('performance' in window) {

@@ -408,14 +408,7 @@ function addLoadingScreen() {
 addLoadingScreen();
 
 // Console welcome message
-console.log(`
-🎨 Welcome to GiftPensCraft Website!
-✨ Built with love using HTML, CSS, JavaScript & Bootstrap
-🚀 Featuring smooth scrolling and animations
-📧 Contact: info@gift-pens-craft.com
-
-Made with ❤️ by the GiftPensCraft team
-`);
+logWelcomeMessage("GiftPensCraft");
 
 // Performance monitoring
 if ('performance' in window) {

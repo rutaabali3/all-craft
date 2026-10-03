@@ -408,14 +408,7 @@ function addLoadingScreen() {
 addLoadingScreen();
 
 // Console welcome message
-console.log(`
-🎨 Welcome to PersonalizedDiariesCraft Website!
-✨ Built with love using HTML, CSS, JavaScript & Bootstrap
-🚀 Featuring smooth scrolling and animations
-📧 Contact: info@personalized-diaries-craft.com
-
-Made with ❤️ by the PersonalizedDiariesCraft team
-`);
+logWelcomeMessage("PersonalizedDiariesCraft");
 
 // Performance monitoring
 if ('performance' in window) {

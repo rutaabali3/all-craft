@@ -408,14 +408,7 @@ function addLoadingScreen() {
 addLoadingScreen();
 
 // Console welcome message
-console.log(`
-🎨 Welcome to PackingTapeCraft Website!
-✨ Built with love using HTML, CSS, JavaScript & Bootstrap
-🚀 Featuring smooth scrolling and animations
-📧 Contact: info@packing-tape-craft.com
-
-Made with ❤️ by the PackingTapeCraft team
-`);
+logWelcomeMessage("PackingTapeCraft");
 
 // Performance monitoring
 if ('performance' in window) {

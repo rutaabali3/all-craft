@@ -408,14 +408,7 @@ function addLoadingScreen() {
 addLoadingScreen();
 
 // Console welcome message
-console.log(`
-🎨 Welcome to LeverArchFilesCraft Website!
-✨ Built with love using HTML, CSS, JavaScript & Bootstrap
-🚀 Featuring smooth scrolling and animations
-📧 Contact: info@lever-arch-files-craft.com
-
-Made with ❤️ by the LeverArchFilesCraft team
-`);
+logWelcomeMessage("LeverArchFilesCraft");
 
 // Performance monitoring
 if ('performance' in window) {

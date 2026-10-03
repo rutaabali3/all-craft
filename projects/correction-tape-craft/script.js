@@ -408,14 +408,7 @@ function addLoadingScreen() {
 addLoadingScreen();
 
 // Console welcome message
-console.log(`
-🎨 Welcome to CorrectionTapeCraft Website!
-✨ Built with love using HTML, CSS, JavaScript & Bootstrap
-🚀 Featuring smooth scrolling and animations
-📧 Contact: info@correction-tape-craft.com
-
-Made with ❤️ by the CorrectionTapeCraft team
-`);
+logWelcomeMessage("CorrectionTapeCraft");
 
 // Performance monitoring
 if ('performance' in window) {

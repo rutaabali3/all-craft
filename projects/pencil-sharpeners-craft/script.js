@@ -408,14 +408,7 @@ function addLoadingScreen() {
 addLoadingScreen();
 
 // Console welcome message
-console.log(`
-🎨 Welcome to PencilSharpenersCraft Website!
-✨ Built with love using HTML, CSS, JavaScript & Bootstrap
-🚀 Featuring smooth scrolling and animations
-📧 Contact: info@pencil-sharpeners-craft.com
-
-Made with ❤️ by the PencilSharpenersCraft team
-`);
+logWelcomeMessage("PencilSharpenersCraft");
 
 // Performance monitoring
 if ('performance' in window) {

@@ -408,14 +408,7 @@ function addLoadingScreen() {
 addLoadingScreen();
 
 // Console welcome message
-console.log(`
-🎨 Welcome to CraftPaperCraft Website!
-✨ Built with love using HTML, CSS, JavaScript & Bootstrap
-🚀 Featuring smooth scrolling and animations
-📧 Contact: info@craft-paper-craft.com
-
-Made with ❤️ by the CraftPaperCraft team
-`);
+logWelcomeMessage("CraftPaperCraft");
 
 // Performance monitoring
 if ('performance' in window) {

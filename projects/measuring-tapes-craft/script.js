@@ -408,14 +408,7 @@ function addLoadingScreen() {
 addLoadingScreen();
 
 // Console welcome message
-console.log(`
-🎨 Welcome to MeasuringTapesCraft Website!
-✨ Built with love using HTML, CSS, JavaScript & Bootstrap
-🚀 Featuring smooth scrolling and animations
-📧 Contact: info@measuring-tapes-craft.com
-
-Made with ❤️ by the MeasuringTapesCraft team
-`);
+logWelcomeMessage("MeasuringTapesCraft");
 
 // Performance monitoring
 if ('performance' in window) {

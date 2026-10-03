@@ -408,14 +408,7 @@ function addLoadingScreen() {
 addLoadingScreen();
 
 // Console welcome message
-console.log(`
-🎨 Welcome to PrinterPaperCraft Website!
-✨ Built with love using HTML, CSS, JavaScript & Bootstrap
-🚀 Featuring smooth scrolling and animations
-📧 Contact: info@printer-paper-craft.com
-
-Made with ❤️ by the PrinterPaperCraft team
-`);
+logWelcomeMessage("PrinterPaperCraft");
 
 // Performance monitoring
 if ('performance' in window) {

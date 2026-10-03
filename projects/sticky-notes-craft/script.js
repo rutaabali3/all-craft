@@ -408,14 +408,7 @@ function addLoadingScreen() {
 addLoadingScreen();
 
 // Console welcome message
-console.log(`
-🎨 Welcome to StickyNotesCraft Website!
-✨ Built with love using HTML, CSS, JavaScript & Bootstrap
-🚀 Featuring smooth scrolling and animations
-📧 Contact: info@sticky-notes-craft.com
-
-Made with ❤️ by the StickyNotesCraft team
-`);
+logWelcomeMessage("StickyNotesCraft");
 
 // Performance monitoring
 if ('performance' in window) {

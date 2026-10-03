@@ -408,14 +408,7 @@ function addLoadingScreen() {
 addLoadingScreen();
 
 // Console welcome message
-console.log(`
-🎨 Welcome to StickyNoteHoldersCraft Website!
-✨ Built with love using HTML, CSS, JavaScript & Bootstrap
-🚀 Featuring smooth scrolling and animations
-📧 Contact: info@sticky-note-holders-craft.com
-
-Made with ❤️ by the StickyNoteHoldersCraft team
-`);
+logWelcomeMessage("StickyNoteHoldersCraft");
 
 // Performance monitoring
 if ('performance' in window) {
