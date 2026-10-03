@@ -1,13 +1,16 @@
 
-        // Navbar scroll effect
-window.addEventListener('scroll', () => {
-    const navbar = document.getElementById('mainNav');
-    if (window.scrollY > 100) {
-        navbar.classList.add('scrolled');
-    } else {
-        navbar.classList.remove('scrolled');
+        // Navbar scroll effect (optimized & state-guarded)
+let _navScrolled = false;
+let _navElem = null;
+function _updateNavScroll() {
+    if (!_navElem) _navElem = document.getElementById('mainNav');
+    if (!_navElem) return;
+    const shouldScroll = window.scrollY > 100;
+    if (_navScrolled !== shouldScroll) {
+        _navElem.classList.toggle('scrolled', shouldScroll);
+        _navScrolled = shouldScroll;
     }
-});
+}
 
 // Smooth scroll for navigation links (native)
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -59,21 +62,20 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
-// Parallax effect for hero section
-window.addEventListener('scroll', () => {
+// Parallax effect for hero section (optimized with cached elements)
+let _heroBgElem = null;
+let _floatingElems = null;
+function _updateHeroParallax() {
     const scrolled = window.pageYOffset;
-    const heroBackground = document.querySelector('.hero-background');
-    const floatingElements = document.querySelectorAll('.floating-element');
-    
-    if (heroBackground) {
-        heroBackground.style.transform = `translateY(${scrolled * 0.5}px)`;
+    if (_heroBgElem === null) _heroBgElem = document.querySelector('.hero-background');
+    if (_floatingElems === null) _floatingElems = [...document.querySelectorAll('.floating-element')];
+    if (_heroBgElem) {
+        _heroBgElem.style.transform = `translateY(${scrolled * 0.5}px)`;
     }
-    
-    floatingElements.forEach((element, index) => {
-        const speed = 0.3 + (index * 0.1);
-        element.style.transform = `translateY(${scrolled * speed}px)`;
-    });
-});
+    for (let i = 0; i < _floatingElems.length; i++) {
+        _floatingElems[i].style.transform = `translateY(${scrolled * (0.3 + i * 0.1)}px)`;
+    }
+}
 
 // Counter animation for statistics
 function animateCounter(element, target, duration = 2000) {
@@ -334,30 +336,38 @@ document.addEventListener('DOMContentLoaded', () => {
     setTimeout(progressiveLoad, 1000);
 });
 
-// Scroll progress indicator
+// Scroll progress indicator (optimized rAF scroll controller)
+let _progressBarElem = null;
+function _updateScrollProgress() {
+    if (!_progressBarElem) return;
+    const scrollTop = window.pageYOffset;
+    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+    if (docHeight > 0) {
+        _progressBarElem.style.width = ((scrollTop / docHeight) * 100) + '%';
+    }
+}
+
 function addScrollProgress() {
-    const progressBar = document.createElement('div');
-    progressBar.style.cssText = `
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 0%;
-        height: 3px;
-        background: var(--gradient-primary);
-        z-index: 9999;
-        transition: width 0.1s ease-out;
-    `;
-    document.body.appendChild(progressBar);
-    
-    window.addEventListener('scroll', () => {
-        const scrollTop = window.pageYOffset;
-        const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-        const scrollPercent = (scrollTop / docHeight) * 100;
-        progressBar.style.width = scrollPercent + '%';
-    });
+    _progressBarElem = document.createElement('div');
+    _progressBarElem.style.cssText = 'position:fixed;top:0;left:0;width:0%;height:3px;background:var(--gradient-primary);z-index:9999;transition:width 0.1s ease-out;';
+    document.body.appendChild(_progressBarElem);
 }
 
 addScrollProgress();
+
+// Unified throttled rAF scroll dispatcher for maximum smooth 60fps scrolling
+let _scrollTicking = false;
+window.addEventListener('scroll', () => {
+    if (!_scrollTicking) {
+        requestAnimationFrame(() => {
+            _updateNavScroll();
+            _updateHeroParallax();
+            _updateScrollProgress();
+            _scrollTicking = false;
+        });
+        _scrollTicking = true;
+    }
+}, { passive: true });
 
 // Loading screen
 function addLoadingScreen() {
