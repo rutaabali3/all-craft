@@ -1,43 +1,43 @@
 document.addEventListener('DOMContentLoaded', () => {
+  // Pre-cache DOM elements and pre-compute card metadata on initialization
+  // to avoid repeated DOM dataset reads and string allocations during search/filter operations.
   const search = document.querySelector('#project-search');
   const empty = document.querySelector('#empty-state');
   const filters = [...document.querySelectorAll('.filter')];
-  let activeFilter = 'all';
-
-  // Performance Optimization: Cache card metadata and visibility state upfront.
-  // This avoids dataset DOM attribute accesses, string interpolations, and redundant DOM mutations on every search keystroke/filter click.
   const cardData = [...document.querySelectorAll('.project-card')].map((el) => {
-    const name = el.dataset.name || '';
-    const category = el.dataset.category || '';
+    const name = (el.dataset.name || '').toLowerCase();
+    const category = (el.dataset.category || '').toLowerCase();
     return {
       el,
       name,
       haystack: `${name} ${category}`,
-      isHidden: el.hidden || false
+      hidden: el.hidden
     };
   });
+  let activeFilter = 'all';
 
   const applyFilters = () => {
     const term = search.value.trim().toLowerCase();
     let visible = 0;
-    const isAllFilter = activeFilter === 'all';
 
-    cardData.forEach((item) => {
-      const matchesTerm = !term || item.name.includes(term);
-      const matchesFilter = isAllFilter || item.haystack.includes(activeFilter);
+    for (let i = 0; i < cardData.length; i++) {
+      const card = cardData[i];
+      const matchesTerm = !term || card.name.includes(term);
+      const matchesFilter = activeFilter === 'all' || card.haystack.includes(activeFilter);
       const show = matchesTerm && matchesFilter;
-      const shouldHide = !show;
+      const hide = !show;
 
-      if (item.isHidden !== shouldHide) {
-        item.isHidden = shouldHide;
-        item.el.hidden = shouldHide;
+      // Only mutate DOM if hidden state changes to eliminate unnecessary reflows and paints
+      if (card.hidden !== hide) {
+        card.el.hidden = hide;
+        card.hidden = hide;
       }
-      if (show) visible += 1;
-    });
+      if (show) visible++;
+    }
 
-    const emptyStateHidden = visible !== 0;
-    if (empty.hidden !== emptyStateHidden) {
-      empty.hidden = emptyStateHidden;
+    const emptyHidden = visible !== 0;
+    if (empty.hidden !== emptyHidden) {
+      empty.hidden = emptyHidden;
     }
   };
 
