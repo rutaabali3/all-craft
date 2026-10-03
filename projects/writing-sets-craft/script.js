@@ -417,15 +417,5 @@ console.log(`
 Made with ❤️ by the WritingSetsCraft team
 `);
 
-// Performance monitoring
-if ('performance' in window) {
-    window.addEventListener('load', () => {
-        setTimeout(() => {
-            const perfData = performance.getEntriesByType('navigation')[0];
-            console.log(`⚡ Page loaded in ${Math.round(perfData.loadEventEnd - perfData.fetchStart)}ms`);
-        }, 0);
-    });
-}
-
 
      
