@@ -3,6 +3,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // to avoid repeated DOM dataset reads and string allocations during search/filter operations.
   const search = document.querySelector('#project-search');
   const empty = document.querySelector('#empty-state');
+  const filtersContainer = document.querySelector('.filters');
   const filters = [...document.querySelectorAll('.filter')];
   const cardData = [...document.querySelectorAll('.project-card')].map((el) => {
     const name = (el.dataset.name || '').toLowerCase();
@@ -17,7 +18,7 @@ document.addEventListener('DOMContentLoaded', () => {
   let activeFilter = 'all';
 
   const applyFilters = () => {
-    const term = search.value.trim().toLowerCase();
+    const term = search ? search.value.trim().toLowerCase() : '';
     let visible = 0;
 
     for (let i = 0; i < cardData.length; i++) {
@@ -36,17 +37,47 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     const emptyHidden = visible !== 0;
-    if (empty.hidden !== emptyHidden) {
+    if (empty && empty.hidden !== emptyHidden) {
       empty.hidden = emptyHidden;
     }
   };
 
-  search.addEventListener('input', applyFilters);
-  filters.forEach((filter) => filter.addEventListener('click', () => {
-    activeFilter = filter.dataset.filter;
-    filters.forEach((button) => button.classList.toggle('active', button === filter));
-    applyFilters();
-  }));
+  // Debounce search input via requestAnimationFrame to batch input updates into single animation
+  // frames, avoiding synchronous card iterations on every keystroke during rapid typing.
+  let searchAnimationFrame = null;
+  const onSearchInput = () => {
+    if (searchAnimationFrame) cancelAnimationFrame(searchAnimationFrame);
+    searchAnimationFrame = requestAnimationFrame(() => {
+      searchAnimationFrame = null;
+      applyFilters();
+    });
+  };
+
+  if (search) {
+    search.addEventListener('input', onSearchInput);
+  }
+
+  // Use event delegation on filter container to avoid attaching per-button event listeners
+  // and skip work when re-clicking the already active filter.
+  if (filtersContainer) {
+    filtersContainer.addEventListener('click', (e) => {
+      const filterBtn = e.target.closest('.filter');
+      if (!filterBtn) return;
+      const targetFilter = filterBtn.dataset.filter;
+      if (activeFilter === targetFilter) return;
+
+      activeFilter = targetFilter;
+      for (let i = 0; i < filters.length; i++) {
+        filters[i].classList.toggle('active', filters[i] === filterBtn);
+      }
+
+      if (searchAnimationFrame) {
+        cancelAnimationFrame(searchAnimationFrame);
+        searchAnimationFrame = null;
+      }
+      applyFilters();
+    });
+  }
 
   if (window.gsap) {
     gsap.from('.site-header', { y: -20, opacity: 0, duration: .7, ease: 'power2.out' });
