@@ -1,7 +1,8 @@
 
-        // Navbar scroll effect
+// Navbar scroll effect
+const navbar = document.getElementById('mainNav');
 window.addEventListener('scroll', () => {
-    const navbar = document.getElementById('mainNav');
+    if (!navbar) return;
     if (window.scrollY > 100) {
         navbar.classList.add('scrolled');
     } else {
@@ -60,10 +61,11 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 // Parallax effect for hero section
+const heroBackground = document.querySelector('.hero-background');
+const floatingElements = document.querySelectorAll('.floating-element');
+
 window.addEventListener('scroll', () => {
     const scrolled = window.pageYOffset;
-    const heroBackground = document.querySelector('.hero-background');
-    const floatingElements = document.querySelectorAll('.floating-element');
     
     if (heroBackground) {
         heroBackground.style.transform = `translateY(${scrolled * 0.5}px)`;
