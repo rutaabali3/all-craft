@@ -408,14 +408,7 @@ function addLoadingScreen() {
 addLoadingScreen();
 
 // Console welcome message
-console.log(`
-🎨 Welcome to StapleRemoversCraft Website!
-✨ Built with love using HTML, CSS, JavaScript & Bootstrap
-🚀 Featuring smooth scrolling and animations
-📧 Contact: info@staple-removers-craft.com
-
-Made with ❤️ by the StapleRemoversCraft team
-`);
+logWelcomeMessage('StapleRemoversCraft', 'info@staple-removers-craft.com');
 
 // Performance monitoring
 if ('performance' in window) {

@@ -408,14 +408,7 @@ function addLoadingScreen() {
 addLoadingScreen();
 
 // Console welcome message
-console.log(`
-🎨 Welcome to LiquidGlueCraft Website!
-✨ Built with love using HTML, CSS, JavaScript & Bootstrap
-🚀 Featuring smooth scrolling and animations
-📧 Contact: info@liquid-glue-craft.com
-
-Made with ❤️ by the LiquidGlueCraft team
-`);
+logWelcomeMessage('LiquidGlueCraft', 'info@liquid-glue-craft.com');
 
 // Performance monitoring
 if ('performance' in window) {
