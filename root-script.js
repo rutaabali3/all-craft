@@ -18,21 +18,24 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const applyFilters = () => {
     const term = search.value.trim().toLowerCase();
+    // Pre-evaluate loop invariants outside card iteration
+    // to avoid redundant string equality/length checks on every card.
+    const hasTerm = term.length > 0;
+    const isAllFilter = activeFilter === 'all';
     let visible = 0;
 
     for (let i = 0; i < cardData.length; i++) {
       const card = cardData[i];
-      const matchesTerm = !term || card.name.includes(term);
-      const matchesFilter = activeFilter === 'all' || card.haystack.includes(activeFilter);
-      const show = matchesTerm && matchesFilter;
-      const hide = !show;
+      // Short-circuit: skip card.haystack.includes() if term does not match or activeFilter is 'all'
+      const matches = (!hasTerm || card.name.includes(term)) && (isAllFilter || card.haystack.includes(activeFilter));
+      const hide = !matches;
 
       // Only mutate DOM if hidden state changes to eliminate unnecessary reflows and paints
       if (card.hidden !== hide) {
         card.el.hidden = hide;
         card.hidden = hide;
       }
-      if (show) visible++;
+      if (matches) visible++;
     }
 
     const emptyHidden = visible !== 0;
