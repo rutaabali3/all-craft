@@ -15,24 +15,32 @@ document.addEventListener('DOMContentLoaded', () => {
     };
   });
   let activeFilter = 'all';
+  let lastTerm = null;
+  let lastFilter = null;
 
   const applyFilters = () => {
     const term = search.value.trim().toLowerCase();
+
+    // Skip redundant iterations if search term and category filter have not changed
+    if (term === lastTerm && activeFilter === lastFilter) return;
+    lastTerm = term;
+    lastFilter = activeFilter;
+
     let visible = 0;
 
     for (let i = 0; i < cardData.length; i++) {
       const card = cardData[i];
       const matchesTerm = !term || card.name.includes(term);
-      const matchesFilter = activeFilter === 'all' || card.haystack.includes(activeFilter);
-      const show = matchesTerm && matchesFilter;
-      const hide = !show;
+      // Short-circuit category check if search term match already failed
+      const matchesFilter = matchesTerm && (activeFilter === 'all' || card.haystack.includes(activeFilter));
+      const hide = !matchesFilter;
 
       // Only mutate DOM if hidden state changes to eliminate unnecessary reflows and paints
       if (card.hidden !== hide) {
         card.el.hidden = hide;
         card.hidden = hide;
       }
-      if (show) visible++;
+      if (matchesFilter) visible++;
     }
 
     const emptyHidden = visible !== 0;
@@ -41,7 +49,17 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   };
 
-  search.addEventListener('input', applyFilters);
+  // Coalesce rapid typing events into a single animation frame pass to avoid main-thread jank
+  let rafId = null;
+  const scheduleApplyFilters = () => {
+    if (rafId !== null) return;
+    rafId = requestAnimationFrame(() => {
+      applyFilters();
+      rafId = null;
+    });
+  };
+
+  search.addEventListener('input', scheduleApplyFilters);
   filters.forEach((filter) => filter.addEventListener('click', () => {
     activeFilter = filter.dataset.filter;
     filters.forEach((button) => button.classList.toggle('active', button === filter));
