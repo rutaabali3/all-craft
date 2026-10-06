@@ -11,10 +11,18 @@ document.addEventListener('DOMContentLoaded', () => {
       el,
       name,
       haystack: `${name} ${category}`,
+      matchesFilter: true,
       hidden: el.hidden
     };
   });
   let activeFilter = 'all';
+
+  const updateFilterMatches = () => {
+    for (let i = 0; i < cardData.length; i++) {
+      const card = cardData[i];
+      card.matchesFilter = activeFilter === 'all' || card.haystack.includes(activeFilter);
+    }
+  };
 
   const applyFilters = () => {
     const term = search.value.trim().toLowerCase();
@@ -22,9 +30,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     for (let i = 0; i < cardData.length; i++) {
       const card = cardData[i];
-      const matchesTerm = !term || card.name.includes(term);
-      const matchesFilter = activeFilter === 'all' || card.haystack.includes(activeFilter);
-      const show = matchesTerm && matchesFilter;
+      // Use pre-computed matchesFilter to short-circuit search evaluation and avoid repeated string checks
+      const show = card.matchesFilter && (!term || card.name.includes(term));
       const hide = !show;
 
       // Only mutate DOM if hidden state changes to eliminate unnecessary reflows and paints
@@ -45,6 +52,7 @@ document.addEventListener('DOMContentLoaded', () => {
   filters.forEach((filter) => filter.addEventListener('click', () => {
     activeFilter = filter.dataset.filter;
     filters.forEach((button) => button.classList.toggle('active', button === filter));
+    updateFilterMatches();
     applyFilters();
   }));
 
