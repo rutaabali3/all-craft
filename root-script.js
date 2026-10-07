@@ -15,16 +15,24 @@ document.addEventListener('DOMContentLoaded', () => {
     };
   });
   let activeFilter = 'all';
+  let lastTerm = null;
+  let lastFilter = null;
+  let filterScheduled = false;
 
   const applyFilters = () => {
     const term = search.value.trim().toLowerCase();
+    // Early exit if search query and active filter haven't changed
+    if (term === lastTerm && activeFilter === lastFilter) return;
+    lastTerm = term;
+    lastFilter = activeFilter;
+
     let visible = 0;
 
     for (let i = 0; i < cardData.length; i++) {
       const card = cardData[i];
-      const matchesTerm = !term || card.name.includes(term);
-      const matchesFilter = activeFilter === 'all' || card.haystack.includes(activeFilter);
-      const show = matchesTerm && matchesFilter;
+      // Short-circuit logical evaluation so haystack matching is skipped when term match fails
+      const show = (!term || card.name.includes(term)) &&
+                   (activeFilter === 'all' || card.haystack.includes(activeFilter));
       const hide = !show;
 
       // Only mutate DOM if hidden state changes to eliminate unnecessary reflows and paints
@@ -41,11 +49,22 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   };
 
-  search.addEventListener('input', applyFilters);
+  // Coalesce high-frequency input/filter events using requestAnimationFrame to prevent thread blocking
+  const scheduleApplyFilters = () => {
+    if (!filterScheduled) {
+      filterScheduled = true;
+      requestAnimationFrame(() => {
+        applyFilters();
+        filterScheduled = false;
+      });
+    }
+  };
+
+  search.addEventListener('input', scheduleApplyFilters);
   filters.forEach((filter) => filter.addEventListener('click', () => {
     activeFilter = filter.dataset.filter;
     filters.forEach((button) => button.classList.toggle('active', button === filter));
-    applyFilters();
+    scheduleApplyFilters();
   }));
 
   if (window.gsap) {
