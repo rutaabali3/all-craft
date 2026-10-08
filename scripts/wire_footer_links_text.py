@@ -20,26 +20,41 @@ labels = {
     'Cookie Policy': 'cookie-policy.html',
 }
 
-for path in ROOT.glob('projects/*/index.html'):
-    text = path.read_text(encoding='utf-8')
-    original = text
+
+def main():
+    # Pre-compile regex patterns once outside the loop to avoid re-compiling 3,000+ times across files
+    patterns = []
     for icon, url in social.items():
-        text = re.sub(
-            rf'<a href="#"><i class="fab fa-{re.escape(icon)}"></i></a>',
-            f'<a href="{url}" target="_blank" rel="noopener noreferrer"><i class="fab fa-{icon}"></i></a>',
-            text,
-        )
+        pattern = re.compile(rf'<a href="#"><i class="fab fa-{re.escape(icon)}"></i></a>')
+        replacement = f'<a href="{url}" target="_blank" rel="noopener noreferrer"><i class="fab fa-{icon}"></i></a>'
+        patterns.append((pattern, replacement))
+
     for label, page in labels.items():
-        text = re.sub(
-            rf'<a href="#"><i class="fas fa-chevron-right me-2"></i>{re.escape(label)}</a>',
-            f'<a href="../../pages/{page}"><i class="fas fa-chevron-right me-2"></i>{label}</a>',
-            text,
+        pattern_chevron = re.compile(
+            rf'<a href="#"><i class="fas fa-chevron-right me-2"></i>{re.escape(label)}</a>'
         )
-        text = re.sub(
-            rf'<a href="#">{re.escape(label)}</a>',
-            f'<a href="../../pages/{page}">{label}</a>',
-            text,
-        )
-    if text != original:
-        path.write_text(text, encoding='utf-8')
-print('rewired footer links with targeted replacements')
+        replacement_chevron = f'<a href="../../pages/{page}"><i class="fas fa-chevron-right me-2"></i>{label}</a>'
+        patterns.append((pattern_chevron, replacement_chevron))
+
+        pattern_plain = re.compile(rf'<a href="#">{re.escape(label)}</a>')
+        replacement_plain = f'<a href="../../pages/{page}">{label}</a>'
+        patterns.append((pattern_plain, replacement_plain))
+
+    for path in ROOT.glob('projects/*/index.html'):
+        text = path.read_text(encoding='utf-8')
+        # Fast pre-check: skip files that contain no unlinked anchor tags
+        if 'href="#"' not in text:
+            continue
+
+        original = text
+        for pattern, replacement in patterns:
+            text = pattern.sub(replacement, text)
+
+        if text != original:
+            path.write_text(text, encoding='utf-8')
+
+    print('rewired footer links with targeted replacements')
+
+
+if __name__ == '__main__':
+    main()
