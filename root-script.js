@@ -15,9 +15,19 @@ document.addEventListener('DOMContentLoaded', () => {
     };
   });
   let activeFilter = 'all';
+  let lastTerm = null;
+  let lastFilter = null;
 
   const applyFilters = () => {
     const term = search.value.trim().toLowerCase();
+
+    // Skip redundant filtering if input search term and active filter haven't changed
+    if (term === lastTerm && activeFilter === lastFilter) {
+      return;
+    }
+    lastTerm = term;
+    lastFilter = activeFilter;
+
     let visible = 0;
 
     for (let i = 0; i < cardData.length; i++) {
@@ -41,11 +51,22 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   };
 
-  search.addEventListener('input', applyFilters);
+  // Coalesce rapid search input events into a single pass per animation frame
+  // to avoid blocking the main thread during fast typing or auto-completion.
+  let filterRafId = null;
+  const scheduleApplyFilters = () => {
+    if (filterRafId !== null) return;
+    filterRafId = requestAnimationFrame(() => {
+      filterRafId = null;
+      applyFilters();
+    });
+  };
+
+  search.addEventListener('input', scheduleApplyFilters);
   filters.forEach((filter) => filter.addEventListener('click', () => {
     activeFilter = filter.dataset.filter;
     filters.forEach((button) => button.classList.toggle('active', button === filter));
-    applyFilters();
+    scheduleApplyFilters();
   }));
 
   if (window.gsap) {
