@@ -41,8 +41,25 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   };
 
-  search.addEventListener('input', applyFilters);
+  // Batch rapid input events with requestAnimationFrame to prevent redundant filtering passes on every keystroke
+  let filterAnimationFrame = null;
+
+  const queueApplyFilters = () => {
+    if (filterAnimationFrame !== null) {
+      cancelAnimationFrame(filterAnimationFrame);
+    }
+    filterAnimationFrame = requestAnimationFrame(() => {
+      filterAnimationFrame = null;
+      applyFilters();
+    });
+  };
+
+  search.addEventListener('input', queueApplyFilters);
   filters.forEach((filter) => filter.addEventListener('click', () => {
+    if (filterAnimationFrame !== null) {
+      cancelAnimationFrame(filterAnimationFrame);
+      filterAnimationFrame = null;
+    }
     activeFilter = filter.dataset.filter;
     filters.forEach((button) => button.classList.toggle('active', button === filter));
     applyFilters();
