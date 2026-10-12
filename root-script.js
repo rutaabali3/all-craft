@@ -15,9 +15,19 @@ document.addEventListener('DOMContentLoaded', () => {
     };
   });
   let activeFilter = 'all';
+  let lastTerm = null;
+  let lastFilter = null;
 
   const applyFilters = () => {
     const term = search.value.trim().toLowerCase();
+
+    // Memoize query state: skip redundant iterations over cardData if term and filter haven't changed.
+    if (term === lastTerm && activeFilter === lastFilter) {
+      return;
+    }
+    lastTerm = term;
+    lastFilter = activeFilter;
+
     let visible = 0;
 
     for (let i = 0; i < cardData.length; i++) {
