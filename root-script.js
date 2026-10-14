@@ -41,7 +41,18 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   };
 
-  search.addEventListener('input', applyFilters);
+  // Coalesce rapid input events using requestAnimationFrame to prevent redundant DOM updates within a single frame
+  let filterScheduled = false;
+  const scheduleApplyFilters = () => {
+    if (filterScheduled) return;
+    filterScheduled = true;
+    requestAnimationFrame(() => {
+      applyFilters();
+      filterScheduled = false;
+    });
+  };
+
+  search.addEventListener('input', scheduleApplyFilters);
   filters.forEach((filter) => filter.addEventListener('click', () => {
     activeFilter = filter.dataset.filter;
     filters.forEach((button) => button.classList.toggle('active', button === filter));
