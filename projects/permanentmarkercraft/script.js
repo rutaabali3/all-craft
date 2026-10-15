@@ -7,7 +7,7 @@ window.addEventListener('scroll', () => {
     } else {
         navbar.classList.remove('scrolled');
     }
-});
+}, { passive: true });
 
 // Smooth scroll for navigation links (native)
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -354,7 +354,7 @@ function addScrollProgress() {
         const docHeight = document.documentElement.scrollHeight - window.innerHeight;
         const scrollPercent = (scrollTop / docHeight) * 100;
         progressBar.style.width = scrollPercent + '%';
-    });
+    }, { passive: true });
 }
 
 addScrollProgress();
