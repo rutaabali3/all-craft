@@ -41,7 +41,13 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   };
 
-  search.addEventListener('input', applyFilters);
+  let filterFrame = null;
+  const scheduleApplyFilters = () => {
+    if (filterFrame) cancelAnimationFrame(filterFrame);
+    filterFrame = requestAnimationFrame(applyFilters);
+  };
+
+  search.addEventListener('input', scheduleApplyFilters);
   filters.forEach((filter) => filter.addEventListener('click', () => {
     activeFilter = filter.dataset.filter;
     filters.forEach((button) => button.classList.toggle('active', button === filter));
