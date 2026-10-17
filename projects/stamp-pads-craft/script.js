@@ -1,13 +1,5 @@
 
-        // Navbar scroll effect
-window.addEventListener('scroll', () => {
-    const navbar = document.getElementById('mainNav');
-    if (window.scrollY > 100) {
-        navbar.classList.add('scrolled');
-    } else {
-        navbar.classList.remove('scrolled');
-    }
-});
+        // Navbar scroll effect consolidated below
 
 // Smooth scroll for navigation links (native)
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -59,20 +51,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
-// Parallax effect for hero section
-window.addEventListener('scroll', () => {
-    const scrolled = window.pageYOffset;
-    const heroBackground = document.querySelector('.hero-background');
-    const floatingElements = document.querySelectorAll('.floating-element');
-    
-    if (heroBackground) {
-        heroBackground.style.transform = `translateY(${scrolled * 0.5}px)`;
-    }
-    
-    floatingElements.forEach((element, index) => {
-        const speed = 0.3 + (index * 0.1);
-        element.style.transform = `translateY(${scrolled * speed}px)`;
-    });
+// Parallax effect consolidated below
 });
 
 // Counter animation for statistics
@@ -334,30 +313,69 @@ document.addEventListener('DOMContentLoaded', () => {
     setTimeout(progressiveLoad, 1000);
 });
 
-// Scroll progress indicator
-function addScrollProgress() {
-    const progressBar = document.createElement('div');
-    progressBar.style.cssText = `
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 0%;
-        height: 3px;
-        background: var(--gradient-primary);
-        z-index: 9999;
-        transition: width 0.1s ease-out;
-    `;
-    document.body.appendChild(progressBar);
-    
-    window.addEventListener('scroll', () => {
-        const scrollTop = window.pageYOffset;
-        const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-        const scrollPercent = (scrollTop / docHeight) * 100;
-        progressBar.style.width = scrollPercent + '%';
-    });
-}
+// Consolidated and throttled scroll handler using requestAnimationFrame and cached DOM elements
+// to prevent layout thrashing and eliminate redundant scroll event listeners.
+(() => {
+    let navbar, heroBackground, floatingElements, progressBar;
+    let isScrolled = false;
+    let ticking = false;
 
-addScrollProgress();
+    function initScrollEffects() {
+        navbar = document.getElementById('mainNav');
+        heroBackground = document.querySelector('.hero-background');
+        floatingElements = [...document.querySelectorAll('.floating-element')];
+
+        progressBar = document.createElement('div');
+        progressBar.style.cssText = 'position: fixed; top: 0; left: 0; width: 0%; height: 3px; background: var(--gradient-primary); z-index: 9999; transition: width 0.1s ease-out;';
+        document.body.appendChild(progressBar);
+
+        updateScroll();
+        window.addEventListener('scroll', onScroll, { passive: true });
+    }
+
+    function onScroll() {
+        if (!ticking) {
+            requestAnimationFrame(updateScroll);
+            ticking = true;
+        }
+    }
+
+    function updateScroll() {
+        const scrolled = window.pageYOffset || document.documentElement.scrollTop;
+
+        if (navbar) {
+            const shouldBeScrolled = scrolled > 100;
+            if (isScrolled !== shouldBeScrolled) {
+                isScrolled = shouldBeScrolled;
+                navbar.classList.toggle('scrolled', shouldBeScrolled);
+            }
+        }
+
+        if (heroBackground) {
+            heroBackground.style.transform = `translateY(${scrolled * 0.5}px)`;
+        }
+        if (floatingElements.length > 0) {
+            for (let i = 0; i < floatingElements.length; i++) {
+                const speed = 0.3 + (i * 0.1);
+                floatingElements[i].style.transform = `translateY(${scrolled * speed}px)`;
+            }
+        }
+
+        if (progressBar) {
+            const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+            const scrollPercent = docHeight > 0 ? (scrolled / docHeight) * 100 : 0;
+            progressBar.style.width = scrollPercent + '%';
+        }
+
+        ticking = false;
+    }
+
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initScrollEffects);
+    } else {
+        initScrollEffects();
+    }
+})();
 
 // Loading screen
 function addLoadingScreen() {
