@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script>
+window.onload = function() {
+    // Generate mock cards
+    for (let i = 0; i < 3; i++) {
+        document.body.innerHTML += `<div class="pricing-card"><button class="btn">Btn</button></div>`;
+    }
+
+    const ITERATIONS = 100000;
+    let cards = document.querySelectorAll('.pricing-card');
+
+    function original() {
+        document.querySelectorAll('.pricing-card').forEach(card => {
+            card.classList.remove('selected');
+        });
+    }
+
+    function optimized() {
+        cards.forEach(card => {
+            card.classList.remove('selected');
+        });
+    }
+
+    const startOriginal = performance.now();
+    for (let i = 0; i < ITERATIONS; i++) {
+        original();
+    }
+    const endOriginal = performance.now();
+
+    const startOptimized = performance.now();
+    for (let i = 0; i < ITERATIONS; i++) {
+        optimized();
+    }
+    const endOptimized = performance.now();
+
+    console.log(`Original: ${endOriginal - startOriginal} ms`);
+    console.log(`Optimized: ${endOptimized - startOptimized} ms`);
+}
+</script>
+</head>
+<body>
+</body>
+</html>
