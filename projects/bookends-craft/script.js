@@ -180,11 +180,12 @@ document.querySelectorAll('.type-card, .material-card, .pricing-card, .vision-ca
 });
 
 // Pricing card selection
+const allPricingCards = document.querySelectorAll('.pricing-card');
 document.querySelectorAll('.pricing-card .btn').forEach(btn => {
     btn.addEventListener('click', function(e) {
         e.preventDefault();
         
-        document.querySelectorAll('.pricing-card').forEach(card => {
+        allPricingCards.forEach(card => {
             card.classList.remove('selected');
         });
         
