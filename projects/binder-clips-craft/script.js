@@ -377,12 +377,26 @@ function addLoadingScreen() {
         transition: opacity 0.5s ease-out;
     `;
     
-    loader.innerHTML = `
-        <div style="text-align: center;">
-            <div style="width: 60px; height: 60px; border: 4px solid var(--gray-200); border-top: 4px solid var(--primary-color); border-radius: 50%; animation: spin 1s linear infinite; margin-bottom: 1rem;"></div>
-            <h4 style="color: var(--primary-color); font-family: var(--font-display);">Loading BinderClipsCraft...</h4>
-        </div>
-    `;
+    const loaderContent = document.createElement('div');
+    loaderContent.style.textAlign = 'center';
+
+    const spinner = document.createElement('div');
+    spinner.style.width = '60px';
+    spinner.style.height = '60px';
+    spinner.style.border = '4px solid var(--gray-200)';
+    spinner.style.borderTop = '4px solid var(--primary-color)';
+    spinner.style.borderRadius = '50%';
+    spinner.style.animation = 'spin 1s linear infinite';
+    spinner.style.marginBottom = '1rem';
+
+    const loadingText = document.createElement('h4');
+    loadingText.style.color = 'var(--primary-color)';
+    loadingText.style.fontFamily = 'var(--font-display)';
+    loadingText.textContent = 'Loading BinderClipsCraft...';
+
+    loaderContent.appendChild(spinner);
+    loaderContent.appendChild(loadingText);
+    loader.appendChild(loaderContent);
     
     document.body.appendChild(loader);
     
